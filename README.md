@@ -1,12 +1,14 @@
 # Mastercard Innovation Challenge — build in progress
 
-**Status (2026-08-20): Tasks 1-10 of `plan.md`'s 12-task build order are
-done** — the full three-pillar system (Identify/Generate/Defend) plus
-the closed-loop Mutator, all with real measured results, several real
-bugs found and fixed along the way (see `task.md` for the full log).
-**Tasks 11 (web dashboard) and 12 (integration contract + latency
-measurement) are not built yet.** Don't read "10 of 12 done" as "done" —
-per this repo's own rules, that distinction matters.
+**Status (2026-08-20): all 12 tasks of `plan.md`'s build order are
+done** — the full three-pillar system (Identify/Generate/Defend), the
+closed-loop Mutator, the web dashboard, and the integration contract +
+latency measurement, all with real measured results, several real bugs
+found and fixed along the way (see `task.md` for the full log). One
+non-task item is still open: `TEAM_BRIEF.md` §4.3's positioning language
+still calls `utterance_artifact_divergence` "the core novelty claim,"
+which needs updating to match the confirmed `constraint_drift`/
+`ingestion_source_trust_score` pivot (see the Decision Log in `task.md`).
 
 ## What's here right now
 
