@@ -292,6 +292,34 @@ one was in place — so the file was never written, on purpose.
 
 ---
 
+## 6. Research references
+
+Academic papers cited as grounding for the two attack types
+(`TEAM_BRIEF.md` §1.3, Part 10 taxonomy entries #47–48):
+
+| Paper | Link | Used for |
+|---|---|---|
+| Greshake et al., "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection" (2023) | https://arxiv.org/abs/2302.12173 | Foundational precedent — names indirect prompt injection as an attack class; our pre-signature corruption (attack #1) is this exact mechanism applied to the moment before a payment mandate is signed |
+| Debi, Zhu, Sen Gupta, "Whispers of Wealth: A Systematic Red-Teaming Study of the Agent Payments Protocol (AP2)" (May 2026) | https://arxiv.org/abs/2601.22569 | AP2-specific validation of the pre-signature injection threat model — they red-team it, we build detection + a closed loop on top |
+| "Transaction Fraud Detection via an Adaptive Graph Neural Network" (2023) | https://arxiv.org/abs/2307.05633 | Academic precedent for GNN-based fraud-ring detection over transaction networks — grounds attack #2's `defend/gnn.py` approach |
+
+Industry threat-intelligence reports — these are also the real, fetched
+source documents in [`identify/corpus/`](identify/corpus/) that the
+Identify RAG agent (`identify/discover.py`) actually ingests and extracts
+attack entries from, not just cited in prose:
+
+| Source | Link |
+|---|---|
+| Cloud Security Alliance — Secure Use of the Agent Payments Protocol (AP2) | https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions |
+| Halborn — AP2 Mandates Under Attack | https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud |
+| Halborn — The Future of Agentic Payments: Security Risks and the Control Layer | https://www.halborn.com/blog/post/the-future-of-agentic-payments-security-risks-and-the-control-layer |
+| Ravelin — Ecommerce Fraud Trends 2026 (survey of 1,504 fraud professionals) | https://www.ravelin.com/blog/ravelin-fraud-survey-2026-press-release |
+| Darwinium — Agentic Commerce Fraud Report 2026 (survey of 500 fraud/risk/security leaders) | https://www.darwinium.com/navigating-agentic-commerce-2026-report |
+| Visa — Spring 2026 Biannual Threats Report | https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html |
+| Zscaler ThreatLabz — Indirect Prompt Injection in Web Content Targets AI Agents | https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents |
+
+---
+
 For the full task-by-task build history, every real bug found and
 fixed, and the Decision Log explaining the primary-signal pivot, see
 [`task.md`](task.md). For positioning, the demo script, and judge Q&A,
