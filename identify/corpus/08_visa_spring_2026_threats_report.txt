@@ -1,0 +1,10 @@
+SOURCE: https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html
+TITLE: Visa Threats Report: As Network Security Strengthens, Criminals Accelerate Shift to AI-Enabled Social Engineering (Spring 2026 Biannual Threats Report)
+
+Criminals are leveraging AI to scale sophisticated scams that manipulate victims into authorizing payments themselves: "Criminals are increasingly targeting people rather than technology, using deception, urgency and AI-enabled tools to exploit trust." AI has democratized fraud capabilities: "What once required deep technical skill can now be executed with a prompt."
+
+Scam statistics: from July to December 2025, Visa detected approximately $1 billion in scam-related activity, making scams the largest category of consumer payment fraud. Attacks typically involve impersonation of trusted brands, manufactured urgency, and deception tactics rather than technical breaches.
+
+Broader trends: traditional fraud declining (device token fraud down 9.6% YoY, network-level security improving); scams accelerating as the dominant consumer threat, replacing direct system attacks; AI weaponization on both attacker and defender sides throughout the transaction lifecycle; ransomware incidents up 26% but only 23% of victims paid (record low), reflecting improved recovery capabilities.
+
+Relevance to agentic-commerce hijack: this report's finding that criminals now "target people rather than technology" maps directly onto pre-signature Intent Artifact corruption -- the attacker doesn't break AP2's cryptography, they manipulate what the agent (acting on the human's behalf) believes the human wants, before any cryptographic guarantee applies.

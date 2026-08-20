@@ -1,14 +1,14 @@
-# Mastercard Innovation Challenge — build in progress
+# Mastercard Innovation Challenge
 
 **Status (2026-08-20): all 12 tasks of `plan.md`'s build order are
 done** — the full three-pillar system (Identify/Generate/Defend), the
 closed-loop Mutator, the web dashboard, and the integration contract +
 latency measurement, all with real measured results, several real bugs
-found and fixed along the way (see `task.md` for the full log). One
-non-task item is still open: `TEAM_BRIEF.md` §4.3's positioning language
-still calls `utterance_artifact_divergence` "the core novelty claim,"
-which needs updating to match the confirmed `constraint_drift`/
-`ingestion_source_trust_score` pivot (see the Decision Log in `task.md`).
+found and fixed along the way (see `task.md` for the full log).
+`TEAM_BRIEF.md`'s positioning language has also been brought in line
+with the confirmed `constraint_drift`/`ingestion_source_trust_score`
+signal pivot (see the Decision Log in `task.md`) — nothing left
+flagged as open.
 
 ## What's here right now
 
@@ -305,8 +305,6 @@ with the small-local-model limitations Tasks 6-7 already found. Not
 chased further with more prompt tuning — diminishing returns, didn't
 change the ship decision.
 
-## Next steps, in order
-
 ## Task 10 complete (2026-08-20): Mutator closed loop
 
 Reused every existing building block (Task 5's CV methodology, Task 2's
@@ -391,15 +389,18 @@ Full suite: **61/61 passing.**
 **All 12 tasks in `plan.md`'s build order are now complete**, each with
 real measured results.
 
-## Next steps
+## Doc pass complete (2026-08-20): `TEAM_BRIEF.md` signal-pivot language updated
 
-**Reflect the signal pivot in `TEAM_BRIEF.md`-facing language.** Decided
-in code/eval terms since Task 1; the positioning doc's §4.3 "core
-novelty claim" framing around `utterance_artifact_divergence` still
-needs updating to match the confirmed `constraint_drift`/
-`ingestion_source_trust_score` pivot — flagged repeatedly across this
-log, still not done, not tied to any single numbered task so easy to
-lose track of.
+The one item flagged repeatedly across this log — `TEAM_BRIEF.md` §4.3
+still calling `utterance_artifact_divergence` "the core novelty claim"
+after the actual pivot to `constraint_drift`/`ingestion_source_trust_score`
+— is fixed. `TEAM_BRIEF.md`'s §4.3, kill-criteria table, taxonomy entry
+#47, demo script, and closing note all now describe the confirmed
+outcome (with real AUC numbers) instead of the pre-build contingency
+language. See `task.md`'s "Doc pass" entry for the itemized diff.
+
+**Nothing left open.** All 12 tasks in `plan.md`'s build order are
+complete, and the one non-task documentation item is now resolved too.
 
 ## Not built yet
 - `generate/ctgan_pipeline.py` (mentioned in early planning, superseded by the LLM-generation approach actually used)

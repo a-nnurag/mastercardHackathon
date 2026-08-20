@@ -1,0 +1,2818 @@
+{
+  "directed": true,
+  "multigraph": true,
+  "graph": {},
+  "nodes": [
+    {
+      "type": "attack",
+      "name": "Indirect Whisper Whisper Attack",
+      "category": "merchant impersonation",
+      "id": "attack_1"
+    },
+    {
+      "type": "delivery",
+      "value": "data-spoofing",
+      "id": "delivery:data-spoofing"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "pre-signature-corruption",
+      "id": "mechanism_type:pre-signature-corruption"
+    },
+    {
+      "type": "source",
+      "value": "https://arxiv.org/abs/2302.12173",
+      "id": "source:https://arxiv.org/abs/2302.12173"
+    },
+    {
+      "type": "attack",
+      "name": "Context Window Manipulation",
+      "category": "context-window-manipulation",
+      "id": "attack_2"
+    },
+    {
+      "type": "delivery",
+      "value": "manipulation",
+      "id": "delivery:manipulation"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "context-window-manipulation",
+      "id": "mechanism_type:context-window-manipulation"
+    },
+    {
+      "type": "attack",
+      "name": "Branded Whisper Attack",
+      "category": "merchant impersonation",
+      "id": "attack_3"
+    },
+    {
+      "type": "delivery",
+      "value": "typosquat-url",
+      "id": "delivery:typosquat-url"
+    },
+    {
+      "type": "attack",
+      "name": "Vault Whisper Attack",
+      "category": "data theft",
+      "id": "attack_4"
+    },
+    {
+      "type": "delivery",
+      "value": "hidden-css-text",
+      "id": "delivery:hidden-css-text"
+    },
+    {
+      "type": "attack",
+      "name": "Branded Whisper Attack",
+      "category": "merchant impersonation",
+      "id": "attack_5"
+    },
+    {
+      "type": "delivery",
+      "value": "Contextual manipulation through prompts",
+      "id": "delivery:Contextual manipulation through prompts"
+    },
+    {
+      "type": "source",
+      "value": "https://arxiv.org/abs/2601.22569",
+      "id": "source:https://arxiv.org/abs/2601.22569"
+    },
+    {
+      "type": "attack",
+      "name": "Branded Whisper Attack",
+      "category": "prompt injection",
+      "id": "attack_6"
+    },
+    {
+      "type": "delivery",
+      "value": "user-input",
+      "id": "delivery:user-input"
+    },
+    {
+      "type": "attack",
+      "name": "Cross-Agent Impersonation",
+      "category": "impersonation",
+      "id": "attack_7"
+    },
+    {
+      "type": "delivery",
+      "value": "network-communication",
+      "id": "delivery:network-communication"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "identity-spoofing",
+      "id": "mechanism_type:identity-spoofing"
+    },
+    {
+      "type": "attack",
+      "name": "Execution Integrity Erosion Through Cryptographic Manipulation",
+      "category": "context-window-manipulation",
+      "id": "attack_8"
+    },
+    {
+      "type": "delivery",
+      "value": "manipulated-prompt",
+      "id": "delivery:manipulated-prompt"
+    },
+    {
+      "type": "attack",
+      "name": "Branded Whisper Attack",
+      "category": "merchant-impersonation",
+      "id": "attack_9"
+    },
+    {
+      "type": "delivery",
+      "value": "shopping-system",
+      "id": "delivery:shopping-system"
+    },
+    {
+      "type": "source",
+      "value": "https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions",
+      "id": "source:https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions"
+    },
+    {
+      "type": "attack",
+      "name": "Elevated Payment Authorization",
+      "category": "elevation of privilege",
+      "id": "attack_10"
+    },
+    {
+      "type": "delivery",
+      "value": "impersonation",
+      "id": "delivery:impersonation"
+    },
+    {
+      "type": "attack",
+      "name": "Vault Whisper Attack",
+      "category": "identity-spoofing",
+      "id": "attack_11"
+    },
+    {
+      "type": "delivery",
+      "value": "malicious-agent-injection",
+      "id": "delivery:malicious-agent-injection"
+    },
+    {
+      "type": "attack",
+      "name": "Ecosystem Collusion via Layer 7 Agent Ecosystem",
+      "category": "agent impersonation",
+      "id": "attack_12"
+    },
+    {
+      "type": "delivery",
+      "value": "Communication Protocol Exploitation",
+      "id": "delivery:Communication Protocol Exploitation"
+    },
+    {
+      "type": "attack",
+      "name": "Log Injection Hiding Coordinated Attacks via Layer 5 Evaluation/Observability",
+      "category": "Observability",
+      "id": "attack_13"
+    },
+    {
+      "type": "delivery",
+      "value": "Anomaly Flooding",
+      "id": "delivery:Anomaly Flooding"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "post-authorization-injection",
+      "id": "mechanism_type:post-authorization-injection"
+    },
+    {
+      "type": "attack",
+      "name": "Deepfake Synthetic Communication Campaign",
+      "category": "social-engineering",
+      "id": "attack_14"
+    },
+    {
+      "type": "delivery",
+      "value": "spoofed-communication",
+      "id": "delivery:spoofed-communication"
+    },
+    {
+      "type": "attack",
+      "name": "AI-facilitated Card Testing",
+      "category": "prompt-injection",
+      "id": "attack_15"
+    },
+    {
+      "type": "delivery",
+      "value": "hidden-ai-injection",
+      "id": "delivery:hidden-ai-injection"
+    },
+    {
+      "type": "attack",
+      "name": "Brand Whisper Attack",
+      "category": "social-engineering",
+      "id": "attack_16"
+    },
+    {
+      "type": "delivery",
+      "value": "social-engineering",
+      "id": "delivery:social-engineering"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "misdirection",
+      "id": "mechanism_type:misdirection"
+    },
+    {
+      "type": "source",
+      "value": "https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "id": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud"
+    },
+    {
+      "type": "attack",
+      "name": "CSS-hidden JSON-LD prompt injection",
+      "category": "prompt injection",
+      "id": "attack_17"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "hidden-corruption",
+      "id": "mechanism_type:hidden-corruption"
+    },
+    {
+      "type": "attack",
+      "name": "Poisoned Tool Outputs",
+      "category": "post-authorization-injection",
+      "id": "attack_18"
+    },
+    {
+      "type": "delivery",
+      "value": "poisoned-tool-output",
+      "id": "delivery:poisoned-tool-output"
+    },
+    {
+      "type": "attack",
+      "name": "Adversarial Prompt Injection",
+      "category": "prompt injection",
+      "id": "attack_19"
+    },
+    {
+      "type": "delivery",
+      "value": "external-tools",
+      "id": "delivery:external-tools"
+    },
+    {
+      "type": "attack",
+      "name": "Cross-Agent Impersonation",
+      "category": "merchant impersonation",
+      "id": "attack_20"
+    },
+    {
+      "type": "delivery",
+      "value": "internal-communications",
+      "id": "delivery:internal-communications"
+    },
+    {
+      "type": "attack",
+      "name": "Memory Poisoning via Feedback",
+      "category": "Functionality Manipulation",
+      "id": "attack_21"
+    },
+    {
+      "type": "delivery",
+      "value": "Feedback loop corruption",
+      "id": "delivery:Feedback loop corruption"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "Context Window Manipulation",
+      "id": "mechanism_type:Context Window Manipulation"
+    },
+    {
+      "type": "attack",
+      "name": "Echelon Evasion",
+      "category": "merchant impersonation",
+      "id": "attack_22"
+    },
+    {
+      "type": "attack",
+      "name": "Sub-agent Semantics Hijack",
+      "category": "semantic attacks",
+      "id": "attack_23"
+    },
+    {
+      "type": "delivery",
+      "value": "log-injection",
+      "id": "delivery:log-injection"
+    },
+    {
+      "type": "attack",
+      "name": "Prompt Injection Attack",
+      "category": "prompt injection",
+      "id": "attack_24"
+    },
+    {
+      "type": "attack",
+      "name": "Identity Spoofing in Control Layer",
+      "category": "merchant impersonation",
+      "id": "attack_25"
+    },
+    {
+      "type": "source",
+      "value": "https://www.halborn.com/blog/post/the-future-of-agentic-payments-security-risks-and-the-control-layer",
+      "id": "source:https://www.halborn.com/blog/post/the-future-of-agentic-payments-security-risks-and-the-control-layer"
+    },
+    {
+      "type": "attack",
+      "name": "Mandate Data Tampering",
+      "category": "identity-spoofing",
+      "id": "attack_26"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "tampering",
+      "id": "mechanism_type:tampering"
+    },
+    {
+      "type": "attack",
+      "name": "Agent Identity Spoofing",
+      "category": "identity-spoofing",
+      "id": "attack_27"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "social-engineering",
+      "id": "mechanism_type:social-engineering"
+    },
+    {
+      "type": "attack",
+      "name": "CSS-hidden JSON-LD prompt injection attack",
+      "category": "prompt injection",
+      "id": "attack_28"
+    },
+    {
+      "type": "attack",
+      "name": "AI-Steered Fraud Campaign",
+      "category": "identity-spoofing",
+      "id": "attack_29"
+    },
+    {
+      "type": "delivery",
+      "value": "Trojaned AI agents",
+      "id": "delivery:Trojaned AI agents"
+    },
+    {
+      "type": "source",
+      "value": "https://www.ravelin.com/blog/ravelin-fraud-survey-2026-press-release",
+      "id": "source:https://www.ravelin.com/blog/ravelin-fraud-survey-2026-press-release"
+    },
+    {
+      "type": "attack",
+      "name": "Evasion Using Synthetic Communication",
+      "category": "context-window-manipulation",
+      "id": "attack_30"
+    },
+    {
+      "type": "delivery",
+      "value": "Synthetic Communication",
+      "id": "delivery:Synthetic Communication"
+    },
+    {
+      "type": "attack",
+      "name": "Delegated Authority Abuse",
+      "category": "identity-spoofing",
+      "id": "attack_31"
+    },
+    {
+      "type": "delivery",
+      "value": "man-in-the-middle (MITM)",
+      "id": "delivery:man-in-the-middle (MITM)"
+    },
+    {
+      "type": "attack",
+      "name": "AI-facilitated phishing attacks",
+      "category": "social-engineering",
+      "id": "attack_32"
+    },
+    {
+      "type": "delivery",
+      "value": "email",
+      "id": "delivery:email"
+    },
+    {
+      "type": "attack",
+      "name": "Deepfake Fraud",
+      "category": "deepfake",
+      "id": "attack_33"
+    },
+    {
+      "type": "attack",
+      "name": "Delegated Authority Abuse via AI Agent",
+      "category": "agent manipulation",
+      "id": "attack_34"
+    },
+    {
+      "type": "delivery",
+      "value": "implied",
+      "id": "delivery:implied"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "impersonation",
+      "id": "mechanism_type:impersonation"
+    },
+    {
+      "type": "source",
+      "value": "https://www.darwinium.com/navigating-agentic-commerce-2026-report",
+      "id": "source:https://www.darwinium.com/navigating-agentic-commerce-2026-report"
+    },
+    {
+      "type": "attack",
+      "name": "Multi-step Persistent Campaigns",
+      "category": "multi-stage attack",
+      "id": "attack_35"
+    },
+    {
+      "type": "delivery",
+      "value": "phishing emails",
+      "id": "delivery:phishing emails"
+    },
+    {
+      "type": "attack",
+      "name": "Synthetic Communication Spoofing",
+      "category": "social engineering",
+      "id": "attack_36"
+    },
+    {
+      "type": "attack",
+      "name": "AI Merchant Impersonation",
+      "category": "merchant impersonation",
+      "id": "attack_37"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic communications",
+      "id": "delivery:synthetic communications"
+    },
+    {
+      "type": "source",
+      "value": "https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html",
+      "id": "source:https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html"
+    },
+    {
+      "type": "attack",
+      "name": "AI-Driven Social Proof Deception",
+      "category": "social engineering",
+      "id": "attack_38"
+    },
+    {
+      "type": "delivery",
+      "value": "Social media, review sites, email",
+      "id": "delivery:Social media, review sites, email"
+    },
+    {
+      "type": "attack",
+      "name": "Deepfake Scammer Impersonation",
+      "category": "merchant impersonation",
+      "id": "attack_39"
+    },
+    {
+      "type": "attack",
+      "name": "AI-Enhanced Scam Social Media Scam",
+      "category": "merchant impersonation",
+      "id": "attack_40"
+    },
+    {
+      "type": "delivery",
+      "value": "social_media",
+      "id": "delivery:social_media"
+    },
+    {
+      "type": "attack",
+      "name": "AI-Generated Refund Fraud",
+      "category": "identity-spoofing",
+      "id": "attack_41"
+    },
+    {
+      "type": "source",
+      "value": "https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents",
+      "id": "source:https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents"
+    },
+    {
+      "type": "attack",
+      "name": "CSS-injected IPI for API key verification",
+      "category": "prompt injection",
+      "id": "attack_42"
+    },
+    {
+      "type": "attack",
+      "name": "Whispered API manipulation attack",
+      "category": "prompt injection",
+      "id": "attack_43"
+    },
+    {
+      "type": "delivery",
+      "value": "prompt-injection",
+      "id": "delivery:prompt-injection"
+    },
+    {
+      "type": "attack",
+      "name": "Seo-styled typosquatting",
+      "category": "typosquatting",
+      "id": "attack_44"
+    },
+    {
+      "type": "attack",
+      "name": "SEO-Optimized DeBank Typosquat",
+      "category": "merchant impersonation",
+      "id": "attack_45"
+    },
+    {
+      "type": "delivery",
+      "value": "search-engine-result",
+      "id": "delivery:search-engine-result"
+    },
+    {
+      "type": "attack",
+      "name": "Hidden CSS-Text IPI for DeBank",
+      "category": "prompt injection",
+      "id": "attack_46"
+    },
+    {
+      "type": "delivery",
+      "value": "css-text",
+      "id": "delivery:css-text"
+    },
+    {
+      "type": "attack",
+      "name": "Intricate DeBank Deception",
+      "category": "prompt injection",
+      "id": "attack_47"
+    },
+    {
+      "type": "attack",
+      "name": "Budget-Driven Flight Upgrade",
+      "category": "context-window-manipulation",
+      "id": "attack_48"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic-transaction-payload",
+      "id": "delivery:synthetic-transaction-payload"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-3612bb96",
+      "id": "source:synthetic:generated_sessions.json:agent-3612bb96"
+    },
+    {
+      "type": "attack",
+      "name": "Purchase Override for Gaming Laptop",
+      "category": "merchant-impersonation",
+      "id": "attack_49"
+    },
+    {
+      "type": "mechanism_type",
+      "value": "merchant-impersonation",
+      "id": "mechanism_type:merchant-impersonation"
+    },
+    {
+      "type": "attack",
+      "name": "Flight Booking Deception",
+      "category": "merchant-impersonation",
+      "id": "attack_50"
+    },
+    {
+      "type": "attack",
+      "name": "Cleartrip Offer Deception",
+      "category": "merchant impersonation",
+      "id": "attack_51"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-9d1950e2",
+      "id": "source:synthetic:generated_sessions.json:agent-9d1950e2"
+    },
+    {
+      "type": "attack",
+      "name": "Mumbai Destination Injection",
+      "category": "destination impersonation",
+      "id": "attack_52"
+    },
+    {
+      "type": "delivery",
+      "value": "text-based",
+      "id": "delivery:text-based"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-71abd760",
+      "id": "source:synthetic:generated_sessions.json:agent-71abd760"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-d0eb7dd7",
+      "id": "source:synthetic:generated_sessions.json:agent-d0eb7dd7"
+    },
+    {
+      "type": "attack",
+      "name": "Budget Manipulation through Prior Task Ignoring",
+      "category": "merchant impersonation",
+      "id": "attack_53"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-fc3b6744",
+      "id": "source:synthetic:generated_sessions.json:agent-fc3b6744"
+    },
+    {
+      "type": "attack",
+      "name": "Merchant Switching and Budget Manipulation",
+      "category": "merchant impersonation",
+      "id": "attack_54"
+    },
+    {
+      "type": "attack",
+      "name": "Price Manipulation and Merchant Switching Attack",
+      "category": "merchant impersonation",
+      "id": "attack_55"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic-data-injection",
+      "id": "delivery:synthetic-data-injection"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-1a4be24f",
+      "id": "source:synthetic:generated_sessions.json:agent-1a4be24f"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-2e0eb3c6",
+      "id": "source:synthetic:generated_sessions.json:agent-2e0eb3c6"
+    },
+    {
+      "type": "attack",
+      "name": "Merchant Redirect through DNS Spoofing",
+      "category": "merchant impersonation",
+      "id": "attack_56"
+    },
+    {
+      "type": "delivery",
+      "value": "dns-spoofing",
+      "id": "delivery:dns-spoofing"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-76d1241b",
+      "id": "source:synthetic:generated_sessions.json:agent-76d1241b"
+    },
+    {
+      "type": "attack",
+      "name": "Price Manipulation and Merchant Switching Attack",
+      "category": "merchant impersonation",
+      "id": "attack_57"
+    },
+    {
+      "type": "delivery",
+      "value": "url-redirection",
+      "id": "delivery:url-redirection"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-fd9ad4ff",
+      "id": "source:synthetic:generated_sessions.json:agent-fd9ad4ff"
+    },
+    {
+      "type": "attack",
+      "name": "Omnipotent Budget Override",
+      "category": "budget manipulation",
+      "id": "attack_58"
+    },
+    {
+      "type": "delivery",
+      "value": "user-input-corruption",
+      "id": "delivery:user-input-corruption"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-2dc17d6d",
+      "id": "source:synthetic:generated_sessions.json:agent-2dc17d6d"
+    },
+    {
+      "type": "attack",
+      "name": "Invisible Merchant Switching",
+      "category": "merchant impersonation",
+      "id": "attack_59"
+    },
+    {
+      "type": "delivery",
+      "value": "hidden-merchant-redirect",
+      "id": "delivery:hidden-merchant-redirect"
+    },
+    {
+      "type": "attack",
+      "name": "Merchant Switching and Price Manipulation",
+      "category": "merchant impersonation",
+      "id": "attack_60"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-145a258a",
+      "id": "source:synthetic:generated_sessions.json:agent-145a258a"
+    },
+    {
+      "type": "attack",
+      "name": "Inflated Budget and Merchant Switch",
+      "category": "merchant impersonation",
+      "id": "attack_61"
+    },
+    {
+      "type": "delivery",
+      "value": "email-redirect",
+      "id": "delivery:email-redirect"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-f1fa9a17",
+      "id": "source:synthetic:generated_sessions.json:agent-f1fa9a17"
+    },
+    {
+      "type": "attack",
+      "name": "Synthetic Intent Override",
+      "category": "merchant impersonation",
+      "id": "attack_62"
+    },
+    {
+      "type": "delivery",
+      "value": "LLM-generated prompt",
+      "id": "delivery:LLM-generated prompt"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-04dfec3e",
+      "id": "source:synthetic:generated_sessions.json:agent-04dfec3e"
+    },
+    {
+      "type": "attack",
+      "name": "Priced Up Upgrade Attack",
+      "category": "merchant impersonation",
+      "id": "attack_63"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic-url",
+      "id": "delivery:synthetic-url"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-f62ed10d",
+      "id": "source:synthetic:generated_sessions.json:agent-f62ed10d"
+    },
+    {
+      "type": "attack",
+      "name": "Price Swapper Scheme",
+      "category": "merchant impersonation",
+      "id": "attack_64"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic data",
+      "id": "delivery:synthetic data"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-c778f71f",
+      "id": "source:synthetic:generated_sessions.json:agent-c778f71f"
+    },
+    {
+      "type": "attack",
+      "name": "Subtle Merchant Switching",
+      "category": "merchant impersonation",
+      "id": "attack_65"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic",
+      "id": "delivery:synthetic"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-ea2ba039",
+      "id": "source:synthetic:generated_sessions.json:agent-ea2ba039"
+    },
+    {
+      "type": "attack",
+      "name": "Silent Plan Upgrade and Price Increase",
+      "category": "plan upgrade",
+      "id": "attack_66"
+    },
+    {
+      "type": "attack",
+      "name": "Hidden Budget Override",
+      "category": "merchant impersonation",
+      "id": "attack_67"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic_payload",
+      "id": "delivery:synthetic_payload"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-1bcb6ba7",
+      "id": "source:synthetic:generated_sessions.json:agent-1bcb6ba7"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-6779aa16",
+      "id": "source:synthetic:generated_sessions.json:agent-6779aa16"
+    },
+    {
+      "type": "attack",
+      "name": "Budget Shift and Merchant Switch Attack",
+      "category": "merchant impersonation",
+      "id": "attack_68"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic-LLM-generated-session",
+      "id": "delivery:synthetic-LLM-generated-session"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-89e8205e",
+      "id": "source:synthetic:generated_sessions.json:agent-89e8205e"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-6f2fc72d",
+      "id": "source:synthetic:generated_sessions.json:agent-6f2fc72d"
+    },
+    {
+      "type": "attack",
+      "name": "Budget-Bypassing Smartwatch Purchase",
+      "category": "merchant impersonation",
+      "id": "attack_69"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic-payload",
+      "id": "delivery:synthetic-payload"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-292bdc43",
+      "id": "source:synthetic:generated_sessions.json:agent-292bdc43"
+    },
+    {
+      "type": "attack",
+      "name": "Budget Override Attack",
+      "category": "merchant impersonation",
+      "id": "attack_70"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-12b15047",
+      "id": "source:synthetic:generated_sessions.json:agent-12b15047"
+    },
+    {
+      "type": "attack",
+      "name": "Phishing Redirect and Price Manipulation",
+      "category": "merchant impersonation",
+      "id": "attack_71"
+    },
+    {
+      "type": "delivery",
+      "value": "redirect-url",
+      "id": "delivery:redirect-url"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-cc09063e",
+      "id": "source:synthetic:generated_sessions.json:agent-cc09063e"
+    },
+    {
+      "type": "attack",
+      "name": "Price and Merchant Manipulation Attack",
+      "category": "merchant impersonation",
+      "id": "attack_72"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-aa97d0f2",
+      "id": "source:synthetic:generated_sessions.json:agent-aa97d0f2"
+    },
+    {
+      "type": "attack",
+      "name": "Budget Cap Evasion via Social Engineering",
+      "category": "merchant impersonation",
+      "id": "attack_73"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-b401451e",
+      "id": "source:synthetic:generated_sessions.json:agent-b401451e"
+    },
+    {
+      "type": "attack",
+      "name": "Blind Target Override Attack",
+      "category": "merchant impersonation",
+      "id": "attack_74"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic_instruction_delivery",
+      "id": "delivery:synthetic_instruction_delivery"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-4dac4c2f",
+      "id": "source:synthetic:generated_sessions.json:agent-4dac4c2f"
+    },
+    {
+      "type": "attack",
+      "name": "Policy Bazaar Destination Injection",
+      "category": "merchant impersonation",
+      "id": "attack_75"
+    },
+    {
+      "type": "delivery",
+      "value": "url-parameters",
+      "id": "delivery:url-parameters"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-e4d4d0f8",
+      "id": "source:synthetic:generated_sessions.json:agent-e4d4d0f8"
+    },
+    {
+      "type": "attack",
+      "name": "Budget Cap Manipulation",
+      "category": "merchant impersonation",
+      "id": "attack_76"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic_data",
+      "id": "delivery:synthetic_data"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-4529a3eb",
+      "id": "source:synthetic:generated_sessions.json:agent-4529a3eb"
+    },
+    {
+      "type": "attack",
+      "name": "Sydney Flight Booking Hijack",
+      "category": "merchant impersonation",
+      "id": "attack_77"
+    },
+    {
+      "type": "delivery",
+      "value": "LLM-generated synthetic session",
+      "id": "delivery:LLM-generated synthetic session"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-344fb602",
+      "id": "source:synthetic:generated_sessions.json:agent-344fb602"
+    },
+    {
+      "type": "attack",
+      "name": "Bali Villa Booking Service Manipulation",
+      "category": "merchant impersonation",
+      "id": "attack_78"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-6eb13993",
+      "id": "source:synthetic:generated_sessions.json:agent-6eb13993"
+    },
+    {
+      "type": "attack",
+      "name": "Budget Cap Manipulation Attack",
+      "category": "budget manipulation",
+      "id": "attack_79"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-a7fefac8",
+      "id": "source:synthetic:generated_sessions.json:agent-a7fefac8"
+    },
+    {
+      "type": "attack",
+      "name": "Budget Manipulation and Merchant Switch Attack",
+      "category": "merchant impersonation",
+      "id": "attack_80"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-364b396e",
+      "id": "source:synthetic:generated_sessions.json:agent-364b396e"
+    },
+    {
+      "type": "attack",
+      "name": "Deceptive Intent Manipulation",
+      "category": "intent manipulation",
+      "id": "attack_81"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic data injection",
+      "id": "delivery:synthetic data injection"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-00cd8009",
+      "id": "source:synthetic:generated_sessions.json:agent-00cd8009"
+    },
+    {
+      "type": "attack",
+      "name": "Budget Skewer Attack",
+      "category": "merchant impersonation",
+      "id": "attack_82"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic-intent-manipulation",
+      "id": "delivery:synthetic-intent-manipulation"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-0a656fcc",
+      "id": "source:synthetic:generated_sessions.json:agent-0a656fcc"
+    },
+    {
+      "type": "attack",
+      "name": "Budget Adjustment Manipulation",
+      "category": "merchant impersonation",
+      "id": "attack_83"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-23ad07c4",
+      "id": "source:synthetic:generated_sessions.json:agent-23ad07c4"
+    },
+    {
+      "type": "attack",
+      "name": "Fancy Word Redirect",
+      "category": "merchant impersonation",
+      "id": "attack_84"
+    },
+    {
+      "type": "delivery",
+      "value": "text-replacement",
+      "id": "delivery:text-replacement"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-0478801a",
+      "id": "source:synthetic:generated_sessions.json:agent-0478801a"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-d26e7527",
+      "id": "source:synthetic:generated_sessions.json:agent-d26e7527"
+    },
+    {
+      "type": "attack",
+      "name": "Price Manipulation for Fitness Equipment",
+      "category": "merchant impersonation",
+      "id": "attack_85"
+    },
+    {
+      "type": "delivery",
+      "value": "synthetic payload in user session",
+      "id": "delivery:synthetic payload in user session"
+    },
+    {
+      "type": "attack",
+      "name": "Price Manipulation and Merchant Impersonation",
+      "category": "merchant impersonation",
+      "id": "attack_86"
+    },
+    {
+      "type": "delivery",
+      "value": "LLM-generated output",
+      "id": "delivery:LLM-generated output"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-e20dd4bc",
+      "id": "source:synthetic:generated_sessions.json:agent-e20dd4bc"
+    },
+    {
+      "type": "attack",
+      "name": "Merchant Switching and Budget Manipulation Attack",
+      "category": "merchant impersonation",
+      "id": "attack_87"
+    },
+    {
+      "type": "delivery",
+      "value": "server-side",
+      "id": "delivery:server-side"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-579da596",
+      "id": "source:synthetic:generated_sessions.json:agent-579da596"
+    },
+    {
+      "type": "attack",
+      "name": "Merchant Switching with Slight Price Increase",
+      "category": "merchant impersonation",
+      "id": "attack_88"
+    },
+    {
+      "type": "source",
+      "value": "synthetic:generated_sessions.json:agent-7adce9fb",
+      "id": "source:synthetic:generated_sessions.json:agent-7adce9fb"
+    }
+  ],
+  "edges": [
+    {
+      "relation": "delivered_via",
+      "source": "attack_1",
+      "target": "delivery:data-spoofing",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_1",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_1",
+      "target": "source:https://arxiv.org/abs/2302.12173",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_1",
+      "target": "source:https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_2",
+      "target": "delivery:manipulation",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_2",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_2",
+      "target": "source:https://arxiv.org/abs/2302.12173",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_3",
+      "target": "delivery:typosquat-url",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_3",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_3",
+      "target": "source:https://arxiv.org/abs/2302.12173",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_3",
+      "target": "source:https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_3",
+      "target": "source:https://www.halborn.com/blog/post/the-future-of-agentic-payments-security-risks-and-the-control-layer",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_3",
+      "target": "source:https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_4",
+      "target": "delivery:hidden-css-text",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_4",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_4",
+      "target": "source:https://arxiv.org/abs/2302.12173",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_4",
+      "target": "source:https://arxiv.org/abs/2601.22569",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_4",
+      "target": "source:https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_5",
+      "target": "delivery:Contextual manipulation through prompts",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_5",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_5",
+      "target": "source:https://arxiv.org/abs/2601.22569",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_6",
+      "target": "delivery:user-input",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_6",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_6",
+      "target": "source:https://arxiv.org/abs/2601.22569",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_7",
+      "target": "delivery:network-communication",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_7",
+      "target": "mechanism_type:identity-spoofing",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_7",
+      "target": "source:https://arxiv.org/abs/2601.22569",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_8",
+      "target": "delivery:manipulated-prompt",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_8",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_8",
+      "target": "source:https://arxiv.org/abs/2601.22569",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_9",
+      "target": "delivery:shopping-system",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_9",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_9",
+      "target": "source:https://arxiv.org/abs/2601.22569",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_10",
+      "target": "delivery:impersonation",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_10",
+      "target": "mechanism_type:identity-spoofing",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_10",
+      "target": "source:https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_10",
+      "target": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_11",
+      "target": "delivery:malicious-agent-injection",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_11",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_11",
+      "target": "source:https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_11",
+      "target": "source:https://www.halborn.com/blog/post/the-future-of-agentic-payments-security-risks-and-the-control-layer",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_12",
+      "target": "delivery:Communication Protocol Exploitation",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_12",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_12",
+      "target": "source:https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_13",
+      "target": "delivery:Anomaly Flooding",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_13",
+      "target": "mechanism_type:post-authorization-injection",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_13",
+      "target": "source:https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_14",
+      "target": "delivery:spoofed-communication",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_14",
+      "target": "mechanism_type:identity-spoofing",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_14",
+      "target": "source:https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_14",
+      "target": "source:https://www.ravelin.com/blog/ravelin-fraud-survey-2026-press-release",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_15",
+      "target": "delivery:hidden-ai-injection",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_15",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_15",
+      "target": "source:https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_16",
+      "target": "delivery:social-engineering",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_16",
+      "target": "mechanism_type:misdirection",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_16",
+      "target": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_17",
+      "target": "delivery:hidden-css-text",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_17",
+      "target": "mechanism_type:hidden-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_17",
+      "target": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_18",
+      "target": "delivery:poisoned-tool-output",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_18",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_18",
+      "target": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_19",
+      "target": "delivery:external-tools",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_19",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_19",
+      "target": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_20",
+      "target": "delivery:internal-communications",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_20",
+      "target": "mechanism_type:identity-spoofing",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_20",
+      "target": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_21",
+      "target": "delivery:Feedback loop corruption",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_21",
+      "target": "mechanism_type:Context Window Manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_21",
+      "target": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_22",
+      "target": "delivery:typosquat-url",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_22",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_22",
+      "target": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_23",
+      "target": "delivery:log-injection",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_23",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_23",
+      "target": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_24",
+      "target": "delivery:poisoned-tool-output",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_24",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_24",
+      "target": "source:https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_25",
+      "target": "delivery:poisoned-tool-output",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_25",
+      "target": "mechanism_type:identity-spoofing",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_25",
+      "target": "source:https://www.halborn.com/blog/post/the-future-of-agentic-payments-security-risks-and-the-control-layer",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_26",
+      "target": "delivery:poisoned-tool-output",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_26",
+      "target": "mechanism_type:tampering",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_26",
+      "target": "source:https://www.halborn.com/blog/post/the-future-of-agentic-payments-security-risks-and-the-control-layer",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_27",
+      "target": "delivery:impersonation",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_27",
+      "target": "mechanism_type:social-engineering",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_27",
+      "target": "source:https://www.halborn.com/blog/post/the-future-of-agentic-payments-security-risks-and-the-control-layer",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_28",
+      "target": "delivery:hidden-css-text",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_28",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_28",
+      "target": "source:https://www.halborn.com/blog/post/the-future-of-agentic-payments-security-risks-and-the-control-layer",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_29",
+      "target": "delivery:Trojaned AI agents",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_29",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_29",
+      "target": "source:https://www.ravelin.com/blog/ravelin-fraud-survey-2026-press-release",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_29",
+      "target": "source:https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_30",
+      "target": "delivery:Synthetic Communication",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_30",
+      "target": "mechanism_type:social-engineering",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_30",
+      "target": "source:https://www.ravelin.com/blog/ravelin-fraud-survey-2026-press-release",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_31",
+      "target": "delivery:man-in-the-middle (MITM)",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_31",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_31",
+      "target": "source:https://www.ravelin.com/blog/ravelin-fraud-survey-2026-press-release",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_31",
+      "target": "source:https://www.darwinium.com/navigating-agentic-commerce-2026-report",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_32",
+      "target": "delivery:email",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_32",
+      "target": "mechanism_type:social-engineering",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_32",
+      "target": "source:https://www.ravelin.com/blog/ravelin-fraud-survey-2026-press-release",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_33",
+      "target": "delivery:email",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_33",
+      "target": "mechanism_type:identity-spoofing",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_33",
+      "target": "source:https://www.ravelin.com/blog/ravelin-fraud-survey-2026-press-release",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_34",
+      "target": "delivery:implied",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_34",
+      "target": "mechanism_type:impersonation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_34",
+      "target": "source:https://www.darwinium.com/navigating-agentic-commerce-2026-report",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_35",
+      "target": "delivery:phishing emails",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_35",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_35",
+      "target": "source:https://www.darwinium.com/navigating-agentic-commerce-2026-report",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_36",
+      "target": "delivery:email",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_36",
+      "target": "mechanism_type:social-engineering",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_36",
+      "target": "source:https://www.darwinium.com/navigating-agentic-commerce-2026-report",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_36",
+      "target": "source:https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_37",
+      "target": "delivery:synthetic communications",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_37",
+      "target": "mechanism_type:social-engineering",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_37",
+      "target": "source:https://www.darwinium.com/navigating-agentic-commerce-2026-report",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_38",
+      "target": "delivery:Social media, review sites, email",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_38",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_38",
+      "target": "source:https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_39",
+      "target": "delivery:email",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_39",
+      "target": "mechanism_type:social-engineering",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_39",
+      "target": "source:https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_40",
+      "target": "delivery:social_media",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_40",
+      "target": "mechanism_type:social-engineering",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_40",
+      "target": "source:https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_41",
+      "target": "delivery:email",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_41",
+      "target": "mechanism_type:identity-spoofing",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_41",
+      "target": "source:https://usa.visa.com/about-visa/newsroom/press-releases.releaseId.22466.html",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_42",
+      "target": "delivery:hidden-css-text",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_42",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_42",
+      "target": "source:https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_43",
+      "target": "delivery:prompt-injection",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_43",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_43",
+      "target": "source:https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_44",
+      "target": "delivery:typosquat-url",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_44",
+      "target": "mechanism_type:social-engineering",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_44",
+      "target": "source:https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_45",
+      "target": "delivery:search-engine-result",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_45",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_45",
+      "target": "source:https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_46",
+      "target": "delivery:css-text",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_46",
+      "target": "mechanism_type:social-engineering",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_46",
+      "target": "source:https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_47",
+      "target": "delivery:hidden-css-text",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_47",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_47",
+      "target": "source:https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_48",
+      "target": "delivery:synthetic-transaction-payload",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_48",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_48",
+      "target": "source:synthetic:generated_sessions.json:agent-3612bb96",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_49",
+      "target": "delivery:synthetic-transaction-payload",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_49",
+      "target": "mechanism_type:merchant-impersonation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_49",
+      "target": "source:synthetic:generated_sessions.json:agent-3612bb96",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_50",
+      "target": "delivery:synthetic-transaction-payload",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_50",
+      "target": "mechanism_type:merchant-impersonation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_50",
+      "target": "source:synthetic:generated_sessions.json:agent-3612bb96",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_51",
+      "target": "delivery:typosquat-url",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_51",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_51",
+      "target": "source:synthetic:generated_sessions.json:agent-9d1950e2",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_51",
+      "target": "source:synthetic:generated_sessions.json:agent-6779aa16",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_51",
+      "target": "source:synthetic:generated_sessions.json:agent-d26e7527",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_52",
+      "target": "delivery:text-based",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_52",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_52",
+      "target": "source:synthetic:generated_sessions.json:agent-71abd760",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_52",
+      "target": "source:synthetic:generated_sessions.json:agent-d0eb7dd7",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_53",
+      "target": "delivery:typosquat-url",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_53",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_53",
+      "target": "source:synthetic:generated_sessions.json:agent-fc3b6744",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_54",
+      "target": "delivery:poisoned-tool-output",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_54",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_54",
+      "target": "source:synthetic:generated_sessions.json:agent-fc3b6744",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_54",
+      "target": "source:synthetic:generated_sessions.json:agent-2e0eb3c6",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_55",
+      "target": "delivery:synthetic-data-injection",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_55",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_55",
+      "target": "source:synthetic:generated_sessions.json:agent-1a4be24f",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_56",
+      "target": "delivery:dns-spoofing",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_56",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_56",
+      "target": "source:synthetic:generated_sessions.json:agent-76d1241b",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_57",
+      "target": "delivery:url-redirection",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_57",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_57",
+      "target": "source:synthetic:generated_sessions.json:agent-fd9ad4ff",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_58",
+      "target": "delivery:user-input-corruption",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_58",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_58",
+      "target": "source:synthetic:generated_sessions.json:agent-2dc17d6d",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_59",
+      "target": "delivery:hidden-merchant-redirect",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_59",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_59",
+      "target": "source:synthetic:generated_sessions.json:agent-2dc17d6d",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_60",
+      "target": "delivery:typosquat-url",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_60",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_60",
+      "target": "source:synthetic:generated_sessions.json:agent-145a258a",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_61",
+      "target": "delivery:email-redirect",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_61",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_61",
+      "target": "source:synthetic:generated_sessions.json:agent-f1fa9a17",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_62",
+      "target": "delivery:LLM-generated prompt",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_62",
+      "target": "mechanism_type:post-authorization-injection",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_62",
+      "target": "source:synthetic:generated_sessions.json:agent-04dfec3e",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_63",
+      "target": "delivery:synthetic-url",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_63",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_63",
+      "target": "source:synthetic:generated_sessions.json:agent-f62ed10d",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_64",
+      "target": "delivery:synthetic data",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_64",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_64",
+      "target": "source:synthetic:generated_sessions.json:agent-c778f71f",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_65",
+      "target": "delivery:synthetic",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_65",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_65",
+      "target": "source:synthetic:generated_sessions.json:agent-ea2ba039",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_66",
+      "target": "delivery:synthetic",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_66",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_66",
+      "target": "source:synthetic:generated_sessions.json:agent-ea2ba039",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_67",
+      "target": "delivery:synthetic_payload",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_67",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_67",
+      "target": "source:synthetic:generated_sessions.json:agent-1bcb6ba7",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_68",
+      "target": "delivery:synthetic-LLM-generated-session",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_68",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_68",
+      "target": "source:synthetic:generated_sessions.json:agent-89e8205e",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_68",
+      "target": "source:synthetic:generated_sessions.json:agent-6f2fc72d",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_69",
+      "target": "delivery:synthetic-payload",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_69",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_69",
+      "target": "source:synthetic:generated_sessions.json:agent-292bdc43",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_70",
+      "target": "delivery:synthetic",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_70",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_70",
+      "target": "source:synthetic:generated_sessions.json:agent-12b15047",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_71",
+      "target": "delivery:redirect-url",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_71",
+      "target": "mechanism_type:post-authorization-injection",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_71",
+      "target": "source:synthetic:generated_sessions.json:agent-cc09063e",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_72",
+      "target": "delivery:synthetic",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_72",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_72",
+      "target": "source:synthetic:generated_sessions.json:agent-aa97d0f2",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_73",
+      "target": "delivery:synthetic_payload",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_73",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_73",
+      "target": "source:synthetic:generated_sessions.json:agent-b401451e",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_74",
+      "target": "delivery:synthetic_instruction_delivery",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_74",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_74",
+      "target": "source:synthetic:generated_sessions.json:agent-4dac4c2f",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_75",
+      "target": "delivery:url-parameters",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_75",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_75",
+      "target": "source:synthetic:generated_sessions.json:agent-e4d4d0f8",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_76",
+      "target": "delivery:synthetic_data",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_76",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_76",
+      "target": "source:synthetic:generated_sessions.json:agent-4529a3eb",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_77",
+      "target": "delivery:LLM-generated synthetic session",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_77",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_77",
+      "target": "source:synthetic:generated_sessions.json:agent-344fb602",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_78",
+      "target": "delivery:synthetic-LLM-generated-session",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_78",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_78",
+      "target": "source:synthetic:generated_sessions.json:agent-6eb13993",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_79",
+      "target": "delivery:synthetic",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_79",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_79",
+      "target": "source:synthetic:generated_sessions.json:agent-a7fefac8",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_80",
+      "target": "delivery:typosquat-url",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_80",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_80",
+      "target": "source:synthetic:generated_sessions.json:agent-364b396e",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_81",
+      "target": "delivery:synthetic data injection",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_81",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_81",
+      "target": "source:synthetic:generated_sessions.json:agent-00cd8009",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_82",
+      "target": "delivery:synthetic-intent-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_82",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_82",
+      "target": "source:synthetic:generated_sessions.json:agent-0a656fcc",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_83",
+      "target": "delivery:synthetic",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_83",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_83",
+      "target": "source:synthetic:generated_sessions.json:agent-23ad07c4",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_84",
+      "target": "delivery:text-replacement",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_84",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_84",
+      "target": "source:synthetic:generated_sessions.json:agent-0478801a",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_85",
+      "target": "delivery:synthetic payload in user session",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_85",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_85",
+      "target": "source:synthetic:generated_sessions.json:agent-d26e7527",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_86",
+      "target": "delivery:LLM-generated output",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_86",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_86",
+      "target": "source:synthetic:generated_sessions.json:agent-e20dd4bc",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_87",
+      "target": "delivery:server-side",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_87",
+      "target": "mechanism_type:pre-signature-corruption",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_87",
+      "target": "source:synthetic:generated_sessions.json:agent-579da596",
+      "key": 0
+    },
+    {
+      "relation": "delivered_via",
+      "source": "attack_88",
+      "target": "delivery:url-redirection",
+      "key": 0
+    },
+    {
+      "relation": "has_mechanism",
+      "source": "attack_88",
+      "target": "mechanism_type:context-window-manipulation",
+      "key": 0
+    },
+    {
+      "relation": "grounded_in",
+      "source": "attack_88",
+      "target": "source:synthetic:generated_sessions.json:agent-7adce9fb",
+      "key": 0
+    }
+  ]
+}

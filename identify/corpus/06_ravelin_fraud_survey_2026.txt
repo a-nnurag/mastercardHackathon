@@ -1,0 +1,12 @@
+SOURCE: https://www.ravelin.com/blog/ravelin-fraud-survey-2026-press-release
+TITLE: Ecommerce Fraud Trends 2026: AI Adoption Gap and Customer Abuse Rising (Ravelin, survey of 1,504 fraud professionals)
+
+Financial impact: average fraud losses $11.4 million per merchant (up 7.5% YoY); 66% of merchants report increased fraud incidents; 64% experienced a share price drop following fraud-related media coverage.
+
+AI-enabled threats: 64% of merchants encountered AI-driven fraud or abuse in the past year; two-thirds attribute at least 5% of fraud losses to AI attacks; one in five report AI fraud exceeding 15% of total losses; yet 30% of merchants lack AI anti-fraud defenses.
+
+Fraud type shifts: payment card fraud remains costliest but dropped from 61% to 56% of losses; refund abuse surged from 21% to 28% (now third-ranked); chargeback fraud ranks second at 37%; 43% of merchants saw customer fraud increase annually.
+
+AI attack patterns identified: card testing (enumeration attacks), falsified refund claims, deploying AI agents to commit fraud at scale, targeted probes of merchants' fraud-protection systems.
+
+Detection challenge: 60% of merchants struggle distinguishing legitimate refund requests from fraudulent ones.

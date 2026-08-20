@@ -1,0 +1,25 @@
+# Pinned to what's actually installed and tested in this environment
+# (python3 -m pip freeze), not just named -- see task.md for which
+# provider/model combinations were run against each LLM SDK below.
+
+scikit-learn==1.9.0
+numpy==2.5.2
+pandas==3.0.5
+sentence-transformers==6.0.0
+pytest==9.1.1
+lightgbm==4.7.0
+langgraph==1.2.11
+langchain-text-splitters==1.1.2
+qdrant-client==1.19.0
+networkx==3.5
+torch==2.9.0
+torch_geometric==2.8.0.post1
+fastapi==0.141.1
+uvicorn==0.52.4
+jsonschema==4.26.0
+
+# generate/llm_adapter.py's LLMAdapter implementations + .env loading
+python-dotenv==1.2.3
+google-genai==2.19.0
+groq==1.6.0
+requests==2.32.5

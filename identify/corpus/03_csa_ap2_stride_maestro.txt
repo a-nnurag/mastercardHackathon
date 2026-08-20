@@ -1,0 +1,17 @@
+SOURCE: https://cloudsecurityalliance.org/blog/2025/10/06/secure-use-of-the-agent-payments-protocol-ap2-a-framework-for-trustworthy-ai-driven-transactions
+TITLE: Secure Use of the Agent Payments Protocol (AP2): A Framework for Trustworthy AI-Driven Transactions (Cloud Security Alliance, Oct 2025)
+
+Applies two threat modeling methodologies to AP2: STRIDE and MAESTRO (CSA's seven-layer framework for agentic AI ecosystems).
+
+STRIDE threat categories applied to AP2: Spoofing (forging mandate signatures), Tampering (altering mandate data in transit), Information Disclosure (exposing payment/PII data), Denial of Service (flooding agents with malicious mandates), Elevation of Privilege (agents hijacking administrative roles), Repudiation (users denying signed transaction authorization).
+
+MAESTRO seven-layer analysis, key named threats per layer:
+- Layer 1 Foundation Models: Memory Poisoning via Feedback; Emergent Decision Biases (adversarial fine-tuning manipulates Shopping Agent product selection toward malicious merchants).
+- Layer 2 Data Operations: Embedding Space Corruption (compromised agent memory influences retrieval accuracy in sub-agents); Semantic Attacks on Ontologies (manipulating product databases causes agents to negotiate erroneous deals); Temporal Data Drift.
+- Layer 3 Agent Frameworks: Prompt Injection Attacks (compromised instructions redirect agent delegation, bypassing Intent Mandate validation); Emergent Goal Misalignment; Logic Bomb Activation (time-triggered behaviors approve high-value transactions during off-hours).
+- Layer 4 Deployment Infrastructure: Container Escape Leading to Collusion; Service Mesh Poisoning (redirects mandate flows to fake issuers); Instrumentation Blindspots.
+- Layer 5 Evaluation/Observability: Anomaly Flooding (false positives overwhelm human reviewers, enabling slow cartel attacks); Log Injection Hiding Coordinated Attacks.
+- Layer 6 Security/Compliance: Policy Manipulation in Agent Reasoning (compromised agents reinterpret Strong Customer Authentication rules to bypass 3DS); Compliance Blind Spots.
+- Layer 7 Agent Ecosystem: Agent Impersonation in A2A Protocols (fake Merchant Endpoints sign invalid Cart Mandates); Ecosystem Collusion; Communication Protocol Exploitation (man-in-the-middle hijacks credential flows); Reputation Exploitation.
+
+Quantitative risk assessment across 10,000 simulated transactions: baseline fraud rate (API-only) 2.1%, AP2 fraud rate 1.15% (45% improvement). CVSS scores: Cart Mandate 5.8 (Moderate), Intent Mandate 7.2 (High, due to asynchronous nature).

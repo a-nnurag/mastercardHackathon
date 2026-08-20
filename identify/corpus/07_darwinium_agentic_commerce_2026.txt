@@ -1,0 +1,14 @@
+SOURCE: https://www.darwinium.com/navigating-agentic-commerce-2026-report
+TITLE: Agentic Commerce Fraud Report 2026 (Darwinium, survey of 500 fraud/risk/security leaders)
+
+AI-assisted fraud prevalence: 97% of organizations experienced AI-facilitated attacks in the past 12 months; 75% estimate over 25% of current fraud attempts involve AI assistance; 50% place AI-assisted fraud between 26-50% of total attempts; 25% believe it already exceeds 50%.
+
+Deepfake threats: 93% have encountered deepfake fraud attempts; 45% experienced multiple deepfake incidents.
+
+Financial impact: direct fraud losses $4.5M average annually; revenue lost to false positives $3M average annually; future customer lifetime value erosion up to $825K per 1,000 blocked accounts; combined exposure approximately $7.5M yearly.
+
+Detection/coverage gaps: 64% defend only at specific checkpoints, not end-to-end; 50% rely on 5-6 separate vendors, creating handoff vulnerabilities; 45% lack tested incident response playbooks; 62% estimate false-positive costs exceed $1M annually.
+
+Emerging attack vectors: fraud-as-a-service platforms improving (45%); enhanced targeting precision and personalization (43%); better evasion techniques mimicking human behavior (42%); more convincing synthetic communications (41%); multi-step persistent campaigns spanning days/weeks (36%).
+
+Agentic commerce traffic handling: 48% allow agentic traffic by default, monitoring afterward; 31% block by default unless explicitly allowlisted; 20% apply case-by-case rules. Core challenge: organizations cannot reliably distinguish legitimate AI shopping assistants from malicious automated attacks across the customer journey.

@@ -1,0 +1,14 @@
+SOURCE: https://arxiv.org/abs/2601.22569
+TITLE: Whispers of Wealth: A Systematic Red-Teaming Study of the Agent Payments Protocol (AP2) (Debi, Zhu, Sen Gupta, May 2026)
+
+This research examines vulnerabilities in Google's Agent Payments Protocol (AP2), which secures LLM-based financial transactions. The study reveals that prompt-driven manipulation can compromise these systems despite cryptographic protections.
+
+Attack techniques:
+- Branded Whisper Attack: manipulates product ranking within agent-mediated shopping systems, causing the agent to prioritize attacker-controlled items over legitimate options.
+- Vault Whisper Attack: extracts sensitive user information by injecting adversarial prompts that bypass data protection mechanisms.
+
+Threat model: targets AP2's reliance on contextual reasoning in large language models. The vulnerability stems from both indirect and direct prompt injection vectors -- attackers can embed malicious instructions either through external content or direct user inputs that the agent processes without sufficient isolation.
+
+Key findings: researchers demonstrated that simple adversarial prompts can reliably subvert agent behavior using Google's Gemini-2.5-Flash model within the Agent Development Kit (ADK) framework, achieving 100% success manipulating product rankings via indirect prompt injection. Their experimental validation indicates current payment architectures lack adequate isolation between user instructions and system-critical operations, necessitating stronger isolation and defensive safeguards in LLM-mediated financial systems.
+
+This establishes the decision-integrity vs. execution-integrity gap: a payment mandate can be cryptographically valid (execution integrity preserved) while encoding the attacker's goal, not the human's (decision integrity compromised) -- because the corruption happens before signing, upstream of any cryptographic guarantee.

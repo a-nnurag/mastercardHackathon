@@ -1,0 +1,10 @@
+SOURCE: https://www.halborn.com/blog/post/ap2-mandates-under-attack-preventing-agent-payment-fraud
+TITLE: AP2 Mandates Under Attack: Preventing Agent Payment Fraud (Halborn)
+
+Four primary attack vectors against AP2 mandates:
+1. Prompt Injection: attackers craft specialized prompts to manipulate orchestrator agents into misinterpreting authorization scope or issuing unauthorized sub-agent instructions.
+2. Poisoned Tool Outputs: AI agents use external tools to define transaction parameters, such as price oracles, address books, and routing APIs. Attackers can spoof these tools, modifying returned values to appear legitimate while violating the principal's actual intentions.
+3. Cross-Agent Impersonation: malicious actors impersonate trusted agents within the hierarchy. Without robust identity verification, orchestrators may accept fraudulent instructions from what they believe are verified counterparts.
+4. Context Window Manipulation: attackers exploit LLM memory limitations by injecting prompts that bury or override mandate constraints established earlier in sessions.
+
+Recommended defenses: Intent Anchoring (converting natural language mandates into structured, on-chain signed representations); Mandate-Transaction Bindings; Structured Outputs (schemas defining permissible transaction types/parameters); Secured High-Value Transactions (multi-party signatures, time-locks); Agent Reasoning Verification (trusted execution environments, zero-knowledge proofs); Contract-Level Enforcement (embedding scope constraints directly into smart contracts rather than relying on agent compliance).

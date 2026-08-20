@@ -1,0 +1,11 @@
+SOURCE: https://www.halborn.com/blog/post/the-future-of-agentic-payments-security-risks-and-the-control-layer
+TITLE: The Future of Agentic Payments: Security Risks and the Control Layer (Halborn)
+
+Five major threats in autonomous AI payment systems:
+1. Identity and Impersonation: spoofing of trusted AI agents is a major threat, as malicious actors may be indistinguishable from legitimate agents without real-time intent verification.
+2. Delegated Authority Abuse: agents granted permission within boundaries risk being manipulated into unauthorized actions like modifying payment methods or security settings.
+3. Expanded Attack Surface: autonomous transactions introduce financial threats alongside existing risks like data theft and tool misuse.
+4. Obsolete Fraud Detection: traditional fraud models rely on human behavioral patterns and become ineffective when agents execute transactions autonomously at near-instantaneous speeds.
+5. Regulatory Gaps: existing financial/consumer protection frameworks assume human-driven transactions, failing to address agentic payment scenarios.
+
+The "control layer" concept -- governance infrastructure needed to manage agentic-economy risk: Agent Identity Systems (verifiable, on-chain identities linked to real-world entities with real-time revocation), Authorization Frameworks (defined policies limiting agent authority), Continuous Monitoring (AI-powered fraud detection analyzing permissions/context/behavior), Immutable Audit Trails, Threat Prevention (strong authentication, scoped access, API security). Core gap: capabilities exist but protective governance structures do not yet match operational realities.

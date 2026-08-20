@@ -1,0 +1,16 @@
+SOURCE: https://arxiv.org/abs/2302.12173
+TITLE: Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection (Greshake et al., 2023)
+
+LLM-Integrated Applications blur the line between data and instructions. Rather than direct user prompts, attackers can exploit systems through Indirect Prompt Injection by injecting malicious instructions into data sources that LLMs retrieve and process.
+
+Threat model: Users interact with LLM-integrated applications rather than the model directly. Retrieved data sources are processed by the LLM without distinction from original system instructions. Attackers can inject prompts into accessible data sources that the application will later retrieve.
+
+Attack taxonomy and impact categories identified:
+1. Data Theft - extracting sensitive information from the application
+2. Worming - self-propagating attacks across connected systems
+3. Information Ecosystem Contamination - poisoning data sources at scale
+4. Arbitrary Code Execution - processing retrieved prompts can act as arbitrary code execution
+5. Functionality Manipulation - altering how applications operate
+6. API Control - determining whether and how external services are invoked
+
+The authors validated attacks against real systems including Bing's GPT-4 powered Chat and code-completion engines and synthetic GPT-4 applications, demonstrating practical viability of these attacks. This is the foundational paper establishing indirect prompt injection as a named attack class, predating agentic-payment-specific research.
