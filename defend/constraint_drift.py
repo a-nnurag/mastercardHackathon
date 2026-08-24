@@ -6,21 +6,16 @@ as an emergency fallback. Unlike utterance_artifact_divergence (an ML/NLP
 similarity score), these are deliberately simple rules checks against
 fields already present on AgentSession/MandateScope — low-risk, easy to
 explain to a risk analyst, no embedding model dependency.
-
-AgentSession's schema is locked (session_schema.py) and has no separate
-structured "actual amount" / "actual merchant" field — only free-text
-signed_artifact_text and task_origin_url. So both functions here work by
-extracting signal from that text/URL rather than assuming structured
-fields that don't exist. That means the amount check only fires when an
-INR amount is actually present in signed_artifact_text (returns no
-violation, not a false one, when the text doesn't state an amount) — this
-is a known limitation of working against free text, not a bug.
 """
 
 import re
 from difflib import SequenceMatcher
+from typing import Optional
 from urllib.parse import urlparse
 
+from defend.contracts import SignalResult
+from defend.detection_context import DetectionContext
+from defend.signals.base import SignalDetector
 from generate.session_schema import AgentSession
 
 _AMOUNT_RE = re.compile(
@@ -101,3 +96,86 @@ def typosquat_similarity(domain: str, allowlist: list[str]) -> float:
     if not allowlist:
         return 0.0
     return max(SequenceMatcher(None, domain, d).ratio() for d in allowlist)
+
+
+class ConstraintDriftDetector(SignalDetector):
+    name: str = "constraint_drift"
+    supported_attack_families: tuple[str, ...] = ("prompt_injection",)
+
+    def detect(
+        self,
+        session: AgentSession,
+        context: Optional[DetectionContext] = None,
+    ) -> SignalResult:
+        evidence = []
+        violations = 0
+
+        amount = extract_amount_inr(session.signed_artifact_text)
+        if amount is not None and amount > session.mandate_scope.amount_cap:
+            violations += 1
+            evidence.append(
+                f"amount_cap_breached: signed INR {amount:,.0f} > cap INR {session.mandate_scope.amount_cap:,.0f}"
+            )
+
+        origin_domain = extract_domain(session.task_origin_url)
+        allowlist = {extract_domain(d) for d in session.mandate_scope.merchant_allowlist}
+        if origin_domain not in allowlist:
+            violations += 1
+            evidence.append(
+                f"merchant_allowlist_violation: origin domain '{origin_domain}' not in allowlist {sorted(allowlist)}"
+            )
+
+        drift_score = violations / 2.0
+        return SignalResult(
+            name=self.name,
+            value=drift_score,
+            available=True,
+            evidence=evidence,
+            hard_violation=False,
+            metadata={
+                "amount_extracted": amount,
+                "amount_cap": session.mandate_scope.amount_cap,
+                "origin_domain": origin_domain,
+                "violations_count": violations,
+            },
+        )
+
+
+class IngestionSourceTrustDetector(SignalDetector):
+    name: str = "ingestion_source_trust_score"
+    supported_attack_families: tuple[str, ...] = ("prompt_injection",)
+
+    def detect(
+        self,
+        session: AgentSession,
+        context: Optional[DetectionContext] = None,
+    ) -> SignalResult:
+        evidence = []
+        sources = session.content_sources_ingested
+        if not sources:
+            return SignalResult(
+                name=self.name,
+                value=0.0,
+                available=True,
+                evidence=["no_content_sources_ingested"],
+                hard_violation=False,
+                metadata={"untrusted_sources": 0, "total_sources": 0},
+            )
+
+        allowlist = [extract_domain(d) for d in session.mandate_scope.merchant_allowlist]
+        untrusted = 0
+        for source in sources:
+            domain = extract_domain(source)
+            if domain not in allowlist:
+                untrusted += 1
+                evidence.append(f"untrusted_ingested_source: '{domain}' not in merchant allowlist")
+
+        trust_score = untrusted / len(sources)
+        return SignalResult(
+            name=self.name,
+            value=trust_score,
+            available=True,
+            evidence=evidence,
+            hard_violation=False,
+            metadata={"untrusted_sources": untrusted, "total_sources": len(sources)},
+        )

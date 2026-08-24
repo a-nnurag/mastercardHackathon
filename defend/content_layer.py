@@ -26,6 +26,12 @@ page content that was never generated.
 """
 
 import re
+from typing import Optional
+
+from defend.contracts import SignalResult
+from defend.detection_context import DetectionContext
+from defend.signals.base import SignalDetector
+from generate.session_schema import AgentSession
 
 _WORD_PATTERN = re.compile(r"[a-z0-9']+")
 
@@ -64,3 +70,38 @@ def score_injection_likelihood(text: str, reference_phrases: list[str] = REFEREN
         overlap = len(text_tokens & phrase_tokens) / len(text_tokens | phrase_tokens)
         best = max(best, overlap)
     return best
+
+
+class ContentInjectionDetector(SignalDetector):
+    name: str = "content_injection"
+    supported_attack_families: tuple[str, ...] = ("prompt_injection",)
+
+    def __init__(self, reference_phrases: list[str] = REFERENCE_INJECTION_PHRASES):
+        self.reference_phrases = reference_phrases
+
+    def detect(
+        self,
+        session: AgentSession,
+        context: Optional[DetectionContext] = None,
+    ) -> SignalResult:
+        # Inspect visible runtime texts: raw_utterance and signed_artifact_text (plus any captured context)
+        # NEVER consume privileged ground-truth fields like injection_payload_text or injection_present.
+        candidate_texts = [session.raw_utterance, session.signed_artifact_text]
+        if context and context.metadata.get("ingested_content"):
+            candidate_texts.append(str(context.metadata["ingested_content"]))
+
+        scores = [score_injection_likelihood(t, self.reference_phrases) for t in candidate_texts if t]
+        score = max(scores) if scores else 0.0
+
+        evidence = []
+        if score >= 0.15:
+            evidence.append(f"jaccard_content_overlap_exceeded: score {score:.3f} >= 0.15")
+
+        return SignalResult(
+            name=self.name,
+            value=score,
+            available=True,
+            evidence=evidence,
+            hard_violation=False,
+            metadata={"score": score},
+        )

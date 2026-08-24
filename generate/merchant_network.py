@@ -75,22 +75,26 @@ def _real_legitimate_domains() -> list[str]:
 
 def _real_malicious_domains() -> list[str]:
     """Domains from hijacked sessions' task_origin_url/content_sources_ingested,
-    excluding the real legitimate domains from DOMAINS. A hijacked session
-    sometimes references the genuine origin domain alongside the fake one
-    in content_sources_ingested (e.g. the agent visited both) — without
-    this exclusion, ~13 of the 19 legitimate merchants got miscounted as
-    malicious, found by actually checking the set overlap rather than
-    trusting the node count."""
+    excluding the real legitimate domains from DOMAINS."""
     legit = set(_real_legitimate_domains())
     domains = set()
-    for d in load_cached_dataset():
-        session = d["session"]
-        if not session.injection_present:
-            continue
-        for url in [session.task_origin_url] + session.content_sources_ingested:
-            domain = _extract_domain(url)
-            if domain and domain not in legit:
-                domains.add(domain)
+    dataset = load_cached_dataset()
+    if dataset:
+        for d in dataset:
+            session = d["session"]
+            if not session.injection_present:
+                continue
+            for url in [session.task_origin_url] + session.content_sources_ingested:
+                domain = _extract_domain(url)
+                if domain and domain not in legit:
+                    domains.add(domain)
+    else:
+        from generate.synthetic_sessions import HIJACKED
+        for session in HIJACKED:
+            for url in [session.task_origin_url] + session.content_sources_ingested:
+                domain = _extract_domain(url)
+                if domain and domain not in legit:
+                    domains.add(domain)
     return sorted(domains)
 
 

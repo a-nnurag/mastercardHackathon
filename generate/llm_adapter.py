@@ -255,3 +255,13 @@ def get_default_adapter() -> LLMAdapter:
         "No supported LLM API key found. Set GROQ_API_KEY, GOOGLE_API_KEY, "
         "or USE_OLLAMA=1 in the repo-root .env file."
     )
+
+
+class MockAdapter(LLMAdapter):
+    """Deterministic mock adapter for fast unit tests without network or quota."""
+
+    def __init__(self, response: dict | None = None):
+        self.response = response or {}
+
+    def generate_json(self, prompt: str, schema: dict) -> dict:
+        return dict(self.response)

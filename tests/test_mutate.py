@@ -54,10 +54,17 @@ def test_find_hard_sessions_identifies_low_confidence_and_false_negatives():
         is_hijack = i % 2 == 0
         row["injection_present"] = is_hijack
         row["subtlety"] = "obvious" if is_hijack else "benign"
-        # Rows 0 and 2 are hijacked but LOOK clean (constraint_drift=0) --
-        # these should show up as hard; the rest of the hijacked rows are
-        # obviously flagged (constraint_drift=1).
-        row["constraint_drift"] = 0.0 if i in (0, 2) else (1.0 if is_hijack else 0.0)
+        # Rows 0 and 2 are hijacked but look like clean sessions (1 tool call, single content source)
+        # The other hijacked rows have high tool calls and multiple sources, scoring high.
+        if i in (0, 2):
+            row["tool_calls_made"] = 1
+            row["content_sources_ingested"] = "['cleartrip.com']"
+        elif is_hijack:
+            row["tool_calls_made"] = 10
+            row["content_sources_ingested"] = "['cleartrip.com', 'tracker.net', 'ad.com']"
+        else:
+            row["tool_calls_made"] = 1
+            row["content_sources_ingested"] = "['cleartrip.com']"
         rows.append(row)
 
     df = pd.DataFrame(rows)

@@ -2,9 +2,13 @@
 Agent-session schema.
 
 IEEE-CIS has no concept of an AI shopping agent's session — it's just
-transaction rows. This file defines the structure we invent and join onto
-those rows. Locked per the plan: don't change field names after Day 2
-without updating every downstream script that reads them.
+transaction rows. This file defines the raw session structure joined onto
+those rows.
+
+Invariants:
+- AgentSession contains ONLY raw facts + evaluation ground truth (injection_present).
+- Detector-derived outputs (divergence, drift, trust scores, etc.) belong to
+  defend/contracts.py (SignalResult, SignalSet), not this raw input schema.
 """
 
 from dataclasses import dataclass, field
@@ -34,19 +38,13 @@ class AgentSession:
     task_origin_url: str
     content_sources_ingested: list[str]
 
-    # --- computed signals (filled in by defend/divergence.py) ---
-    utterance_artifact_divergence: Optional[float] = None   # headline feature
-    constraint_drift: Optional[float] = None                # fallback primary signal
-    ingestion_source_trust_score: Optional[float] = None    # fallback primary signal
-
     hops_since_intent: int = 0
     tool_calls_made: int = 0
 
     injection_present: bool = False    # ground-truth label, known only in synthetic data
 
-    # LLM-generated hidden attacker text for hijacked sessions (Task 2). Not
-    # consumed by any Defend layer yet — kept for the future Identify RAG
-    # agent. Additive field, doesn't touch anything above.
+    # LLM-generated hidden attacker text for hijacked sessions (Task 2).
+    # Present only on hijacked sessions, None for benign sessions.
     injection_payload_text: Optional[str] = None
 
     def to_row(self) -> dict:
@@ -59,9 +57,6 @@ class AgentSession:
             "mandate_merchant_allowlist": self.mandate_scope.merchant_allowlist,
             "task_origin_url": self.task_origin_url,
             "content_sources_ingested": self.content_sources_ingested,
-            "utterance_artifact_divergence": self.utterance_artifact_divergence,
-            "constraint_drift": self.constraint_drift,
-            "ingestion_source_trust_score": self.ingestion_source_trust_score,
             "hops_since_intent": self.hops_since_intent,
             "tool_calls_made": self.tool_calls_made,
             "injection_present": self.injection_present,

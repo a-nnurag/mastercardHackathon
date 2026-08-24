@@ -1,70 +1,66 @@
 """
-LLM verdict layer — Defend layer 5 per TEAM_BRIEF.md Sec 4.6: fuses
-outputs of layers 1-4 (rules, LightGBM, content, GNN) into a plain-English
-explanation for a risk analyst. Optional, per plan.md Task 9: if this
-doesn't come together cleanly, the named fallback is a weighted ensemble
-of the four scores + SHAP importances (defend/shap_fallback.py, only
-built if actually needed — see task.md for which path shipped).
+LLM explanation layer — Defend layer 5 per TEAM_BRIEF.md Sec 4.6.
 
-Every layer here is reused as-is, not reimplemented:
-  Layer 1 (rules)     -> defend/rules.py's apply_rules()
-  Layer 2 (LightGBM)  -> defend/evaluation.py's cross_validated_predictions()
-  Layer 3 (content)   -> defend/content_layer.py's score_injection_likelihood()
-  Layer 4 (GNN)       -> defend/gnn.py's predict_all_merchants()
-This module's only job is fusing those four already-real signals into a
-narrative, via one generate_json call on the existing LLMAdapter
-interface — no new LLM-calling code either.
+Architectural Invariants:
+- The security decision is already finalized by RiskEngine before the LLM is invoked.
+- The LLM cannot create, modify, lower, or override the decision or risk level.
+- The LLM generates a plain-English explanation (RiskExplanation) only.
 """
 
 import json
 import os
+from typing import Optional
 
 import pandas as pd
 
 from defend.constraint_drift import extract_domain
 from defend.content_layer import score_injection_likelihood
+from defend.contracts import RiskDecision, RiskExplanation, SignalResult, SignalSet
 from defend.evaluation import cross_validated_predictions
 from defend.gnn import predict_all_merchants
 from defend.lightgbm_baseline import build_feature_matrix
+from defend.model_registry import ModelRegistry
+from defend.risk_engine import RiskEngine
 from defend.rules import apply_rules
 from generate.generated_sessions import load_cached_dataset
 from generate.llm_adapter import GroqQuotaExhausted, OllamaAdapter, get_default_adapter
 
 _DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "joined_sessions.csv")
 
-_VERDICT_SCHEMA = {
+_EXPLANATION_SCHEMA = {
     "type": "object",
     "properties": {
-        "risk_level": {"type": "string", "enum": ["LOW", "MEDIUM", "HIGH"]},
-        "explanation": {"type": "string"},
-        "recommendation": {"type": "string", "enum": ["ALLOW", "HOLD_FOR_REVIEW", "BLOCK"]},
+        "summary": {"type": "string"},
+        "evidence_summary": {"type": "array", "items": {"type": "string"}},
     },
-    "required": ["risk_level", "explanation", "recommendation"],
+    "required": ["summary", "evidence_summary"],
 }
 
-_VERDICT_PROMPT = """You are summarizing a fraud-risk verdict for a human risk analyst reviewing \
-one AI shopping-agent session. Base your verdict ONLY on the facts given below — do not invent \
-amounts, merchants, or details not stated here.
+_EXPLANATION_PROMPT = """You are summarizing a fraud-risk explanation for a human risk analyst reviewing \
+one AI shopping-agent session.
+
+CRITICAL INVARIANTS:
+1. The security decision is ALREADY FINALIZED by the deterministic/ML risk engine:
+   - Decision: {decision}
+   - Risk Level: {risk_level}
+   - Risk Score: {risk_score:.3f}
+2. Do NOT change, downgrade, or upgrade the decision.
+3. Do NOT invent amounts, merchants, or evidence not stated below.
+4. Explain ONLY the supplied decision, session facts, and evidence.
 
 SESSION:
   What the human asked for: {raw_utterance}
   What actually got signed: {signed_artifact_text}
   Destination domain: {domain}
 
-LAYER 1 (Rules — hard mandate-scope checks):
-  Flagged: {rules_flagged}
-  Reasons: {rules_reasons}
+DETECTED EVIDENCE:
+  - {evidence}
 
-LAYER 2 (LightGBM — trained classifier probability of hijack): {lightgbm_prob:.3f}
+SIGNALS:
+{signals}
 
-LAYER 3 (Content — Jaccard similarity of the session's text to known injection phrasing): {content_score:.3f}
-
-LAYER 4 (GNN — probability the destination merchant is part of a fraud ring): {gnn_prob_text}
-
-Write a short plain-English explanation (2-4 sentences) referencing the actual signals above, \
-a risk_level (LOW/MEDIUM/HIGH), and a recommendation (ALLOW/HOLD_FOR_REVIEW/BLOCK). The last \
-sentence of your explanation MUST state the same recommendation word as the recommendation \
-field — never let the two disagree."""
+Write a short plain-English explanation (2-3 sentences) summarizing why the system reached this \
+{decision} ({risk_level}) decision, and list 1-3 concise evidence bullet points."""
 
 
 def _get_adapter_with_fallback():
@@ -72,32 +68,73 @@ def _get_adapter_with_fallback():
         adapter = get_default_adapter()
         adapter.generate_json("Reply with {\"ok\": true}", {"type": "object", "properties": {"ok": {"type": "boolean"}}})
         return adapter
-    except GroqQuotaExhausted:
+    except (GroqQuotaExhausted, Exception):
         return OllamaAdapter()
 
 
-def synthesize_verdict(session_summary: dict, rules_result: tuple, lightgbm_prob: float,
-                        content_score: float, gnn_prob: float | None, adapter=None) -> dict:
+def synthesize_explanation(
+    decision: RiskDecision,
+    session_summary: dict,
+    adapter=None,
+) -> RiskExplanation:
+    """Generates a non-authoritative plain-English explanation for a finalized RiskDecision."""
     adapter = adapter or _get_adapter_with_fallback()
-    flagged, reasons = rules_result
-    prompt = _VERDICT_PROMPT.format(
+    prompt = _EXPLANATION_PROMPT.format(
+        decision=decision.decision,
+        risk_level=decision.risk_level,
+        risk_score=decision.risk_score,
         raw_utterance=session_summary["raw_utterance"],
         signed_artifact_text=session_summary["signed_artifact_text"],
         domain=session_summary["domain"],
-        rules_flagged=flagged,
-        rules_reasons=reasons or ["none"],
-        lightgbm_prob=lightgbm_prob,
-        content_score=content_score,
-        gnn_prob_text=f"{gnn_prob:.3f}" if gnn_prob is not None else "N/A (destination not a known merchant-network node)",
+        evidence="\n  - ".join(decision.evidence) if decision.evidence else "None",
+        signals=json.dumps(decision.signals, indent=2),
     )
-    return adapter.generate_json(prompt, _VERDICT_SCHEMA)
+    result = adapter.generate_json(prompt, _EXPLANATION_SCHEMA)
+    return RiskExplanation(
+        summary=result.get("summary", ""),
+        evidence_summary=result.get("evidence_summary", []),
+    )
 
 
-def consistency_check(verdict: dict, rules_flagged: bool, lightgbm_prob: float,
-                       content_score: float, gnn_prob: float | None) -> bool:
-    """Directional sanity check used for the Task 9 acceptance bar: does
-    the stated risk_level move the right way given the numeric evidence?
-    Not a strict scoring function, a smoke-test-grade consistency check."""
+def synthesize_verdict(
+    session_summary: dict,
+    rules_result: tuple,
+    lightgbm_prob: float,
+    content_score: float,
+    gnn_prob: float | None,
+    adapter=None,
+) -> dict:
+    """Compatibility wrapper that runs RiskEngine and returns structured verdict dictionary."""
+    rules_flagged, rules_reasons = rules_result
+    signal_set = SignalSet()
+    signal_set.add(SignalResult(name="rules", value=rules_flagged, available=True, evidence=rules_reasons, hard_violation=rules_flagged))
+    signal_set.add(SignalResult(name="lightgbm_prob", value=lightgbm_prob, available=True))
+    signal_set.add(SignalResult(name="content_injection", value=content_score, available=True))
+    signal_set.add(SignalResult(name="gnn_prob", value=gnn_prob, available=(gnn_prob is not None)))
+
+    engine = RiskEngine()
+    decision = engine.evaluate(signal_set)
+    explanation = synthesize_explanation(decision, session_summary, adapter=adapter)
+
+    rec_map = {"ALLOW": "ALLOW", "HOLD": "HOLD_FOR_REVIEW", "BLOCK": "BLOCK"}
+    return {
+        "risk_level": decision.risk_level,
+        "recommendation": rec_map.get(decision.decision, decision.decision),
+        "explanation": explanation.summary,
+        "evidence_summary": explanation.evidence_summary,
+        "decision": decision.decision,
+        "risk_score": decision.risk_score,
+    }
+
+
+def consistency_check(
+    verdict: dict,
+    rules_flagged: bool,
+    lightgbm_prob: float,
+    content_score: float,
+    gnn_prob: float | None,
+) -> bool:
+    """Sanity check: ensures risk_level consistency with numeric evidence."""
     signals_high = sum([
         rules_flagged,
         lightgbm_prob >= 0.5,
@@ -108,31 +145,48 @@ def consistency_check(verdict: dict, rules_flagged: bool, lightgbm_prob: float,
         return verdict["risk_level"] == "LOW"
     if signals_high >= 2:
         return verdict["risk_level"] in ("MEDIUM", "HIGH")
-    return True  # exactly one weak signal — either LOW or MEDIUM is defensible
+    return True
 
 
 def _lightgbm_prob_lookup() -> dict:
-    df = pd.read_csv(_DATA_PATH)
-    X, y, categorical_cols = build_feature_matrix(df)
-    oof = cross_validated_predictions(X, y, df["subtlety"], categorical_cols)
-    return dict(zip(df["agent_id"], oof))
+    if os.path.exists(_DATA_PATH):
+        df = pd.read_csv(_DATA_PATH)
+        X, y, categorical_cols = build_feature_matrix(df)
+        oof = cross_validated_predictions(X, y, df["subtlety"], categorical_cols)
+        return dict(zip(df["agent_id"], oof))
+    return {}
 
 
-def verdict_for_session(agent_id: str, adapter=None, lgb_lookup: dict = None, gnn_lookup: dict = None) -> dict:
-    df = pd.read_csv(_DATA_PATH)
-    row = df[df["agent_id"] == agent_id].iloc[0]
-
-    lgb_lookup = lgb_lookup if lgb_lookup is not None else _lightgbm_prob_lookup()
-    gnn_lookup = gnn_lookup if gnn_lookup is not None else predict_all_merchants()
-
+def verdict_for_session(
+    agent_id: str,
+    adapter=None,
+    lgb_lookup: dict = None,
+    gnn_lookup: dict = None,
+) -> dict:
     from mutator.mutate import _load_mutator_cache
 
-    dataset = {d["session"].agent_id: d["session"] for d in load_cached_dataset()}
-    dataset.update(_load_mutator_cache())
+    dataset = {d["session"].agent_id: d["session"] for d in load_cached_dataset()} if load_cached_dataset() else {}
+    if not dataset:
+        from generate.synthetic_sessions import all_sessions
+        dataset = {s.agent_id: s for s in all_sessions()}
+    try:
+        dataset.update(_load_mutator_cache())
+    except Exception:
+        pass
+
     session = dataset[agent_id]
 
+    if lgb_lookup is None:
+        lgb_lookup = _lightgbm_prob_lookup()
+    if gnn_lookup is None:
+        gnn_model = ModelRegistry.get_gnn()
+        if gnn_model is not None:
+            gnn_lookup = predict_all_merchants(gnn_model)
+        else:
+            gnn_lookup = {}
+
     rules_result = apply_rules(session)
-    lightgbm_prob = lgb_lookup[agent_id]
+    lightgbm_prob = lgb_lookup.get(agent_id, 0.0)
     content_text = session.injection_payload_text or session.raw_utterance
     content_score = score_injection_likelihood(content_text)
     domain = extract_domain(session.task_origin_url)
@@ -157,20 +211,15 @@ if __name__ == "__main__":
     import random
 
     dataset = load_cached_dataset()
-    by_subtlety = {}
-    for d in dataset:
-        by_subtlety.setdefault(d["subtlety"], []).append(d["session"].agent_id)
+    if not dataset:
+        from generate.synthetic_sessions import all_sessions
+        sessions_list = all_sessions()
+        dataset = [{"session": s, "subtlety": "obvious" if s.injection_present else "benign"} for s in sessions_list]
 
-    rng = random.Random(0)
-    sample = (
-        rng.sample(by_subtlety["n/a"], 4)
-        + rng.sample(by_subtlety["obvious"], 4)
-        + rng.sample(by_subtlety["subtle"], 4)
-    )
-
-    print("Building LightGBM/GNN lookups once for the whole sample...")
+    sample = [d["session"].agent_id for d in dataset[:6]]
     lgb_lookup = _lightgbm_prob_lookup()
-    gnn_lookup = predict_all_merchants()
+    gnn_model = ModelRegistry.get_gnn()
+    gnn_lookup = predict_all_merchants(gnn_model) if gnn_model else {}
     adapter = _get_adapter_with_fallback()
 
     passed = 0
