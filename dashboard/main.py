@@ -33,12 +33,9 @@ def _startup():
     _state["gnn_lookup"] = gnn_lookup
     print(f"  {len(rows)} sessions ready.")
 
-    print("Running Task 5 cross-validated metrics (attack #1: prompt injection)...")
+    print("Loading offline evaluation metrics (attack #1 & #2)...")
     _state["attack1_metrics"] = compute_attack1_metrics()
-
-    print("Running Task 8 GNN held-out evaluation (attack #2: merchant laundering)...")
     _state["attack2_metrics"] = compute_attack2_metrics()
-
     _state["mutation_rounds"] = load_mutation_rounds()
     print("Dashboard ready.")
 

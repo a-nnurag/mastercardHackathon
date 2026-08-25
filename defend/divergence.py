@@ -29,8 +29,14 @@ you run it (it'll download ~90MB once, then cache).
 """
 
 import warnings
+from typing import Optional
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.metrics.pairwise import cosine_similarity
+
+from defend.contracts import SignalResult
+from defend.detection_context import DetectionContext
+from defend.signals.base import SignalDetector
+from generate.session_schema import AgentSession
 
 _SEMANTIC_MODEL = None
 _SEMANTIC_LOAD_ATTEMPTED = False
@@ -92,15 +98,38 @@ def compute_divergence(utterance: str, artifact_text: str, weights=(0.7, 0.3)) -
 
 def score_sessions(sessions: list) -> list:
     """
-    Fills in .utterance_artifact_divergence (combined score) on each session,
-    plus keeps the two raw components around for inspection/comparison.
+    Returns the sessions without mutating the underlying dataclass.
+    Canonical divergence signals should be extracted via DivergenceDetector.
     """
-    for s in sessions:
-        lexical = compute_lexical_divergence(s.raw_utterance, s.signed_artifact_text)
-        semantic = compute_semantic_divergence(s.raw_utterance, s.signed_artifact_text)
-        s.lexical_divergence = lexical
-        s.semantic_divergence = semantic
-        s.utterance_artifact_divergence = (
-            0.7 * semantic + 0.3 * lexical if semantic is not None else lexical
-        )
     return sessions
+
+
+class DivergenceDetector(SignalDetector):
+    name: str = "utterance_artifact_divergence"
+    supported_attack_families: tuple[str, ...] = ("prompt_injection",)
+
+    def detect(
+        self,
+        session: AgentSession,
+        context: Optional[DetectionContext] = None,
+    ) -> SignalResult:
+        lexical = compute_lexical_divergence(session.raw_utterance, session.signed_artifact_text)
+        semantic = compute_semantic_divergence(session.raw_utterance, session.signed_artifact_text)
+        combined = (0.7 * semantic + 0.3 * lexical) if semantic is not None else lexical
+
+        evidence = []
+        if combined >= 0.5:
+            evidence.append(f"high_utterance_divergence: score {combined:.3f} >= 0.5")
+
+        return SignalResult(
+            name=self.name,
+            value=combined,
+            available=True,
+            evidence=evidence,
+            hard_violation=False,
+            metadata={
+                "lexical_divergence": lexical,
+                "semantic_divergence": semantic,
+                "semantic_available": semantic is not None,
+            },
+        )

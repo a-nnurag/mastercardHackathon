@@ -131,15 +131,15 @@ dashboard/          Web prototype (Task 11) — FastAPI + plain HTML/CSS/JS, no 
   data_access.py            Wires every Defend layer's real output into the UI (no new detection logic)
   static/{index.html,app.js,style.css}   Sessions / Session Detail / Metrics views
 
-tests/              pytest, one file per module, real-pipeline tests where practical (not all mocked)
+tests/              pytest, one file per module, real-pipeline tests where practical
 data/               Generated + downloaded datasets (gitignored — see Setup below)
+artifacts/models/   Persisted ML/GNN model artifacts (lightgbm.txt, gnn.pt)
 plan.md             Engineering task list, in build order — the *what to build, how to know it's done*
 TEAM_BRIEF.md       Positioning, demo script, judge Q&A, kill-criteria thresholds — the *why*
 task.md             Running log: what was actually done, real measured results, every bug found/fixed
 INTEGRATION_CONTRACT.md   Task 12's JSON schema + real example payloads + measured latency
-CLAUDE.md           Instructions for Claude Code sessions working in this repo
+CLAUDE.md           Instructions for AI assistants working in this repo
 requirements.txt    Pinned to what's actually installed and tested (see Setup below)
-mastercard_fraud_defense/   Frozen snapshot of an earlier milestone — not a working directory, don't edit
 ```
 
 ---

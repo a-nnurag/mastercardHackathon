@@ -26,7 +26,7 @@ import pandas as pd
 from sklearn.metrics import f1_score, precision_score, recall_score, roc_auc_score
 from sklearn.model_selection import StratifiedKFold
 
-from defend.lightgbm_baseline import build_feature_matrix, train_baseline
+from defend.lightgbm_baseline import _encode_categoricals, build_feature_matrix, train_baseline
 
 _DATA_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "joined_sessions.csv")
 _N_FOLDS = 5
@@ -38,22 +38,24 @@ _LGB_PARAMS = {
     "metric": "auc",
     "verbosity": -1,
     "num_leaves": 15,
-    "min_data_in_leaf": 5,
+    "min_data_in_leaf": 1,
 }
 
 
 def cross_validated_predictions(X: pd.DataFrame, y: pd.Series, strata: pd.Series, categorical_cols: list[str]) -> np.ndarray:
     """Out-of-fold predicted probabilities — every row scored by a model
     that never trained on it."""
+    X_encoded = _encode_categoricals(X, categorical_cols)
     oof = np.zeros(len(X))
     skf = StratifiedKFold(n_splits=_N_FOLDS, shuffle=True, random_state=_SEED)
     for train_idx, test_idx in skf.split(X, strata):
         train_data = lgb.Dataset(
-            X.iloc[train_idx], label=y.iloc[train_idx],
-            categorical_feature=categorical_cols, free_raw_data=False,
+            X_encoded.iloc[train_idx].values,
+            label=y.iloc[train_idx].values.astype(np.float64),
+            free_raw_data=False,
         )
-        model = lgb.train(_LGB_PARAMS, train_data, num_boost_round=100)
-        oof[test_idx] = model.predict(X.iloc[test_idx])
+        model = lgb.train(_LGB_PARAMS, train_data, num_boost_round=50)
+        oof[test_idx] = model.predict(X_encoded.iloc[test_idx].values)
     return oof
 
 

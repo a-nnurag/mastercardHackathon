@@ -10,33 +10,34 @@ and just points you to the two longer docs, rather than repeating them.
 ```bash
 pip install -r requirements.txt
 
-# Confirm the semantic embedding model actually loads before trusting any
-# AUC number that depends on it (first run downloads ~90MB from huggingface.co):
-python3 -c "from sentence_transformers import SentenceTransformer; SentenceTransformer('all-MiniLM-L6-v2'); print('OK')"
+# Run full test suite (85 tests covering contracts, detectors, GNN, RiskEngine, integration)
+pytest -v
 
-# The Day-2 kill-criterion gate — run this after any change to divergence.py,
-# session_schema.py, or the session generator. Read the SEMANTIC/COMBINED AUC
-# lines, not the lexical one (lexical-only is a known-weak fallback).
-python3 defend/isolation_test.py
+# Run offline training pipeline to build and save model artifacts
+python3 -m defend.training.pipeline
+
+# Measure real end-to-end single-session serving latency
+python3 -m defend.integration_contract
+
+# Launch the FastAPI web dashboard
+python3 -m uvicorn dashboard.main:app --reload
 ```
-
-There is no test suite yet. Per `plan.md` §5, new modules get
-`tests/test_<module>.py` run with `pytest`; run a single test the normal way
-(`pytest tests/test_foo.py::test_bar`) once that directory exists.
-
-IEEE-CIS dataset and API-key setup (needed starting at plan.md Task 2/4) are
-listed in `plan.md` §3 — not needed for the current isolation-test work.
 
 ## Architecture
 
-Three pillars plus a feedback loop (full diagram in `TEAM_BRIEF.md` §4.1):
-**Identify** (RAG taxonomy agent, not built yet) feeds attack patterns to
-**Generate** (produces `AgentSession` test data), which feeds **Defend**
-(scores sessions for hijack risk), whose misses feed the **Mutator**
-(not built yet) to produce harder Generate rounds and candidate new
-Identify taxonomy entries. The novelty is the closed loop, not any single
-component — see `plan.md` §4 for build order and per-task definitions of
-done.
+Three pillars plus a feedback loop:
+**Identify** (LangGraph RAG taxonomy agent) feeds attack patterns to
+**Generate** (produces `AgentSession` test data + shell merchant network), which feeds **Defend**
+(scores sessions for hijack and laundering risk via rules, ML tabular classifiers, content detection, GNN, and RiskEngine), whose misses feed the **Mutator** (closed-loop hardening).
+
+Everything is built around canonical data contracts:
+- `generate/session_schema.py`: `AgentSession` (raw session facts + `injection_present`).
+- `defend/contracts.py`: `SignalResult`, `SignalSet`, `RiskDecision`, `RiskExplanation`.
+- `defend/signals/`: Clean `SignalDetector` abstractions.
+- `defend/risk_engine.py`: Pure decision authority (`RiskEngine`).
+- `defend/llm_verdict.py`: Non-authoritative analyst explanation (`RiskExplanation`).
+- `defend/model_registry.py`: Pure artifact loader and in-memory cache (never trains).
+- `defend/training/`: Offline training pipelines for GNN and tabular models.
 
 Everything is built around one locked data structure,
 `generate/session_schema.py`'s `AgentSession` (+ nested `MandateScope`):

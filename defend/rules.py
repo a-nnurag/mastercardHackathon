@@ -5,30 +5,13 @@ Per TEAM_BRIEF.md's Defend stack (Sec 4.6): the first, cheapest layer a
 risk analyst sees, before LightGBM (Task 5). Every flag comes with a
 concrete, named reason a human could verify by hand — no scores, no
 model, just facts about the session.
-
-Reuses extract_amount_inr/extract_domain from defend/constraint_drift.py
-rather than reimplementing the same regex/domain-parsing logic. The two
-modules check the same underlying facts but serve different consumers:
-constraint_drift.py produces a continuous 0-1 score for the ML/AUC
-pipeline; this module produces a categorical flag + human-readable
-reasons for an explainable rules panel.
-
-Two things worth stating plainly rather than discovering by surprise:
-
-- No separate "category violation" check: AgentSession has no field
-  distinct from mandate_scope for category, and in this project's
-  generated data each domain maps 1:1 to its own merchant_allowlist (see
-  narrative_generator.py's DOMAINS) — so a category check would just
-  duplicate the merchant-allowlist check below, not add independent
-  signal. Not implemented as a separate rule for that reason.
-- The agent_registry_status check will show 0 positive hits on the
-  current dataset: every generated session, benign or hijacked, has
-  agent_registry_status="valid" by design (TEAM_BRIEF.md: "token stays
-  valid even when hijacked — that's the whole point"). It's kept for
-  completeness against a future session generator that might simulate
-  revoked/expired tokens, not because it's expected to fire here.
 """
 
+from typing import Optional
+
+from defend.contracts import SignalResult
+from defend.detection_context import DetectionContext
+from defend.signals.base import SignalDetector
 from generate.session_schema import AgentSession
 from defend.constraint_drift import extract_amount_inr, extract_domain
 
@@ -56,11 +39,30 @@ def apply_rules(session: AgentSession) -> tuple[bool, list[str]]:
     return bool(reasons), reasons
 
 
+class RuleDetector(SignalDetector):
+    name: str = "rules"
+    supported_attack_families: tuple[str, ...] = ("prompt_injection",)
+
+    def detect(
+        self,
+        session: AgentSession,
+        context: Optional[DetectionContext] = None,
+    ) -> SignalResult:
+        flagged, reasons = apply_rules(session)
+        return SignalResult(
+            name=self.name,
+            value=flagged,
+            available=True,
+            evidence=reasons,
+            hard_violation=flagged,
+            metadata={
+                "violations_count": len(reasons),
+                "reasons": reasons,
+            },
+        )
+
+
 if __name__ == "__main__":
-    # Rules only need AgentSession/mandate_scope fields, which the locked
-    # to_row() doesn't fully preserve (it flattens mandate_scope, drops
-    # raw_utterance/signed_artifact_text) — load full sessions straight
-    # from the generation cache rather than the joined CSV.
     from generate.generated_sessions import load_cached_dataset
 
     dataset = load_cached_dataset()

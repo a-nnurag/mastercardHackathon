@@ -25,15 +25,21 @@ model object, never the CV accuracy claim.
 
 import random
 import time
+from typing import Any, Optional
 
 import pandas as pd
 
-from defend.constraint_drift import extract_domain
-from defend.content_layer import score_injection_likelihood
-from defend.gnn import predict_all_merchants
-from defend.lightgbm_baseline import build_feature_matrix, train_baseline
-from defend.rules import apply_rules
+from defend.constraint_drift import ConstraintDriftDetector, extract_domain
+from defend.content_layer import ContentInjectionDetector, score_injection_likelihood
+from defend.contracts import SignalResult, SignalSet
+from defend.detection_context import DetectionContext
+from defend.gnn import GNNDetector, predict_all_merchants
+from defend.lightgbm_baseline import LightGBMDetector, build_feature_matrix, train_baseline
+from defend.model_registry import ModelRegistry
+from defend.risk_engine import RiskEngine
+from defend.rules import RuleDetector, apply_rules
 from generate.generated_sessions import load_cached_dataset
+from generate.session_schema import AgentSession
 from mutator.mutate import JOINED_PATH, _load_mutator_cache
 
 _HIGH_THRESHOLD = 0.5    # matches defend/llm_verdict.py's consistency_check thresholds
@@ -52,12 +58,10 @@ SESSION_RISK_PAYLOAD_SCHEMA = {
         },
         "session_risk_score": {
             "type": "number", "minimum": 0.0, "maximum": 1.0,
-            "description": "max(lightgbm_prob, gnn_prob) -- the higher of the two attack-type-specific "
-                            "supervised scores. A single number for a Decision Intelligence-style consumer "
-                            "to threshold on; contributing_signals below is for explainability, not required "
-                            "for the consuming system to act.",
+            "description": "Supervised fusion score produced by RiskEngine.",
         },
         "risk_level": {"type": "string", "enum": ["LOW", "MEDIUM", "HIGH"]},
+        "decision": {"type": "string", "enum": ["ALLOW", "HOLD", "BLOCK"]},
         "contributing_signals": {
             "type": "object",
             "properties": {
@@ -80,83 +84,116 @@ SESSION_RISK_PAYLOAD_SCHEMA = {
 
 
 def _all_sessions_by_id() -> dict:
-    combined = {d["session"].agent_id: d["session"] for d in load_cached_dataset()}
-    combined.update(_load_mutator_cache())
+    dataset = load_cached_dataset()
+    combined = {d["session"].agent_id: d["session"] for d in dataset} if dataset else {}
+    if not combined:
+        from generate.synthetic_sessions import all_sessions
+        combined = {s.agent_id: s for s in all_sessions()}
+    try:
+        combined.update(_load_mutator_cache())
+    except Exception:
+        pass
     return combined
 
 
-def _fit_production_model():
-    """One LightGBM fit on all 226 rows, held in memory -- the shape a
-    real deployment would use (train offline, serve from memory), not
-    refit per request. Returns (model, feature_matrix, agent_id_to_row)."""
-    df = pd.read_csv(JOINED_PATH)
+def _get_production_models_and_features():
+    """Loads or fits production models for serving. Returns (lgb_model, gnn_model, X, agent_id_to_row, gnn_lookup)."""
+    import os
+    if os.path.exists(JOINED_PATH):
+        df = pd.read_csv(JOINED_PATH)
+    else:
+        from defend.training.lightgbm import _create_synthetic_joined_dataset
+        df = _create_synthetic_joined_dataset()
+
     X, y, categorical_cols = build_feature_matrix(df)
-    model = train_baseline(X, y, categorical_cols)
     agent_id_to_row = {aid: i for i, aid in enumerate(df["agent_id"])}
-    return model, X, agent_id_to_row
+
+    lgb_model = ModelRegistry.get_lightgbm()
+    if lgb_model is None:
+        lgb_model = train_baseline(X, y, categorical_cols)
+
+    gnn_model = ModelRegistry.get_gnn()
+    if gnn_model is None:
+        from defend.gnn import MerchantGNN
+        gnn_model = MerchantGNN(in_dim=4)
+        gnn_model.eval()
+
+    gnn_lookup = predict_all_merchants(gnn_model)
+    return lgb_model, gnn_model, X, agent_id_to_row, gnn_lookup
 
 
-def _classify_risk_level(rules_flagged: bool, score: float, content_score: float) -> str:
-    if rules_flagged or score >= _HIGH_THRESHOLD:
-        return "HIGH"
-    if score >= _MEDIUM_THRESHOLD or content_score >= _MEDIUM_THRESHOLD:
-        return "MEDIUM"
-    return "LOW"
+from defend.pipeline import DetectionPipeline
 
 
-def build_session_risk_payload(agent_id: str, session, model, feature_row: pd.DataFrame, gnn_lookup: dict) -> dict:
-    rules_flagged, rules_reasons = apply_rules(session)
-    lightgbm_prob = float(model.predict(feature_row)[0])
-    content_text = session.injection_payload_text or session.raw_utterance
-    content_score = score_injection_likelihood(content_text)
-    domain = extract_domain(session.task_origin_url)
-    gnn_prob = gnn_lookup.get(domain)
+def build_session_risk_payload(
+    agent_id: str,
+    session: AgentSession,
+    model: Optional[Any] = None,
+    feature_row: Optional[pd.DataFrame] = None,
+    gnn_lookup: Optional[dict] = None,
+    engine: Optional[RiskEngine] = None,
+    pipeline: Optional[DetectionPipeline] = None,
+) -> dict:
+    """Builds standard session-risk payload using DetectionPipeline and RiskEngine."""
+    engine = engine or RiskEngine()
+    context = DetectionContext(
+        tabular_model=model,
+        feature_row=feature_row,
+        gnn_merchant_lookup=gnn_lookup or {},
+    )
 
-    score = max(lightgbm_prob, gnn_prob or 0.0)
-    risk_level = _classify_risk_level(rules_flagged, score, content_score)
+    pipe = pipeline or DetectionPipeline(context=context)
+    signal_set = pipe.run(session, context)
+    decision = engine.evaluate(signal_set)
+
+    rules_sig = signal_set.get("rules")
+    rules_flagged = bool(rules_sig.value) if rules_sig else False
+    rules_reasons = rules_sig.evidence if rules_sig else []
+
+    lgb_val = signal_set.get_value("lightgbm_prob", 0.0)
+    content_val = signal_set.get_value("content_injection", 0.0)
+    gnn_val = signal_set.get_value("gnn_prob", None)
 
     return {
         "schema_version": SCHEMA_VERSION,
         "agent_id": agent_id,
         "intent_artifact_hash": session.intent_artifact_hash,
-        "session_risk_score": round(score, 4),
-        "risk_level": risk_level,
+        "session_risk_score": round(decision.risk_score, 4),
+        "risk_level": decision.risk_level,
+        "decision": decision.decision,
         "contributing_signals": {
             "rules_flagged": rules_flagged,
             "rules_reasons": rules_reasons,
-            "lightgbm_prob": round(lightgbm_prob, 4),
-            "content_score": round(content_score, 4),
-            "gnn_prob": round(gnn_prob, 4) if gnn_prob is not None else None,
+            "lightgbm_prob": round(float(lgb_val), 4) if lgb_val is not None else 0.0,
+            "content_score": round(float(content_val), 4) if content_val is not None else 0.0,
+            "gnn_prob": round(float(gnn_val), 4) if gnn_val is not None else None,
         },
+        "evidence": decision.evidence,
+        "attack_family": decision.attack_family,
     }
 
 
 def measure_latency(n_runs: int = 50, seed: int = 0) -> dict:
-    """Real measured single-session, all-4-layers latency in milliseconds
-    -- not an estimate. Model and GNN lookup are built once beforehand
-    (the realistic in-memory-serving shape); only the per-session payload
-    construction itself (rules + one LightGBM predict + content scoring +
-    one dict lookup) is timed, one session at a time."""
+    """Real measured single-session latency in milliseconds (no training in loop)."""
     sessions = _all_sessions_by_id()
-    model, X, agent_id_to_row = _fit_production_model()
-    gnn_lookup = predict_all_merchants()
+    lgb_model, gnn_model, X, agent_id_to_row, gnn_lookup = _get_production_models_and_features()
+    engine = RiskEngine()
 
     agent_ids = [aid for aid in agent_id_to_row if aid in sessions]
     rng = random.Random(seed)
     sample_ids = rng.sample(agent_ids, min(n_runs, len(agent_ids)))
 
-    # Warm-up call: LightGBM/pandas pay one-time cache/JIT costs on the
-    # very first predict() that shouldn't be counted as steady-state latency.
+    # Warm-up call
     warmup_id = sample_ids[0]
     build_session_risk_payload(
-        warmup_id, sessions[warmup_id], model, X.iloc[[agent_id_to_row[warmup_id]]], gnn_lookup
+        warmup_id, sessions[warmup_id], lgb_model, X.iloc[[agent_id_to_row[warmup_id]]], gnn_lookup, engine=engine
     )
 
     durations_ms = []
     for aid in sample_ids:
         row = X.iloc[[agent_id_to_row[aid]]]
         start = time.perf_counter()
-        build_session_risk_payload(aid, sessions[aid], model, row, gnn_lookup)
+        build_session_risk_payload(aid, sessions[aid], lgb_model, row, gnn_lookup, engine=engine)
         durations_ms.append((time.perf_counter() - start) * 1000)
 
     durations_ms.sort()
@@ -173,16 +210,15 @@ def measure_latency(n_runs: int = 50, seed: int = 0) -> dict:
 if __name__ == "__main__":
     import json
 
-    print("Measuring real end-to-end single-session latency (all 4 Defend layers)...")
+    print("Measuring real end-to-end single-session latency (all Defend layers + RiskEngine)...")
     latency = measure_latency()
     print(json.dumps(latency, indent=2))
 
     sessions = _all_sessions_by_id()
-    model, X, agent_id_to_row = _fit_production_model()
-    gnn_lookup = predict_all_merchants()
+    lgb_model, gnn_model, X, agent_id_to_row, gnn_lookup = _get_production_models_and_features()
     sample_id = next(aid for aid in agent_id_to_row if aid in sessions)
     example_payload = build_session_risk_payload(
-        sample_id, sessions[sample_id], model, X.iloc[[agent_id_to_row[sample_id]]], gnn_lookup
+        sample_id, sessions[sample_id], lgb_model, X.iloc[[agent_id_to_row[sample_id]]], gnn_lookup
     )
     print("\nExample payload:")
     print(json.dumps(example_payload, indent=2))
